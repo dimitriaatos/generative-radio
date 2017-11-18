@@ -1,1 +1,1 @@
-var freesoundToken = '';
+var freesoundToken = 'token here';

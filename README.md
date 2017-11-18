@@ -1,2 +1,3 @@
 # generative-radio
-An online radio station that generates music by playing sounds hosted on Freesound
+
+To use the generative radio you have to get a Freesound token from https://freesound.org/apiv2/apply and add it to config.js.
