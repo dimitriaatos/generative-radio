@@ -17,7 +17,7 @@ function playElement(element) {
     var random = new noRep(element.sounds.length, 1, 1);
     var metro = setInterval(
         function () {
-            player(element.sounds[random.next()].previews['preview-lq-mp3']);
+            buffer(element.sounds[random.next()].previews['preview-lq-mp3']);
         },
         element.structure.metro
     );

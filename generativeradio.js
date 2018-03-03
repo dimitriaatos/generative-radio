@@ -1,6 +1,6 @@
 freesound.setToken(freesoundToken);
 // var pieces;
-loadJSON('assets/js/gen_radio/piece.json');
+loadJSON('piece.json');
 var first = true;
 
 function loadJSON(filename) {
@@ -59,7 +59,7 @@ function loadSounds(pieces){
                         pieces[currentPieceIndex].piece;
                         counter();
                     },
-                    function(){console.log('Error while searching...');}
+                    function(){alert('Error while searching...');}
                 )
             }
             else {counter()}
@@ -84,21 +84,30 @@ function loadSounds(pieces){
 }
 //calls playPiece
 
-function player(file) {
-    if (first) {
-        mess();
-        first = false;
-    }
-    var player = document.createElement('audio');
-    player.setAttribute('controls', 1);
-    player.setAttribute('autoplay', 1);
-    // player.setAttribute('loop', 1);
-    player.style.position = 'absolute';
-    player.style.left = Math.random()*window.innerWidth+'px';
-    player.style.top = Math.random()*window.innerHeight+'px';
-    player.setAttribute('src', file);
-    document.body.appendChild(player);
-    player.addEventListener('ended', function(){
-        player.parentNode.removeChild(player);
-    });
+window.AudioContext = window.AudioContext || window.webkitAudioContext;
+  context = new AudioContext();
+
+function buffer(link) {
+  // Fix up prefixing
+  var bufferLoader = new BufferLoader(
+    context,
+    [
+      link
+    ],
+    finishedLoading
+    );
+
+  bufferLoader.load();
+}
+
+function finishedLoading(file) {
+  if (first) {
+          mess();
+          first = false;
+      }
+  var source = context.createBufferSource();
+  source.buffer = file[0];
+
+  source.connect(context.destination);
+  source.start(0);
 }
