@@ -1,15 +1,9 @@
 <!DOCTYPE html>
-<html>
+<html lang="en" dir="ltr">
 
 <head>
-  <title>Generative radio</title>
-  <script src="config.js"></script>
-  <script src="buffer-loader.js"></script>
-  <script src="freesound.js"></script>
-  <script src="structure.js"></script>
-  <script src="generativeradio.js"></script>
-
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta charset="utf-8">
+  <title></title>
   <style media="screen">
     #svg-container {
       width: 100%;
@@ -142,7 +136,7 @@
               </g>
               <g id="on-the-ground" transform="translate(29.000000, 308.000000)">
                   <text id="loading" fill="#000000" transform="translate(250.000000, -60.000000)">
-                      <tspan x="-1" y="16">loading...</tspan>
+                      <tspan x="-1" y="16">loading…</tspan>
                   </text>
                   <path d="M0.5,90.5 C0.5,90.5 15.8577459,81.1310909 58.2324219,65.0722656 C96.349965,50.6267754 185.3552,25.8242188 255.261719,25.8242188 C270.648438,25.8242188 275.630135,26.1703735 285.125,25.8242188 C411.71875,21.2089844 461.517578,42.421875 520.496094,61.5878906 C579.474609,80.7539063 602.5,90.5 602.5,90.5" id="ground" stroke="#000000" stroke-width="3" stroke-linecap="square"></path>
                   <polyline id="antenna" stroke="#000000" stroke-width="3" stroke-linecap="square" points="85.5 49.5 69.5 9.5 64.4872755 10.4825382 71.7637814 52.7732684 82.6564873 41.9642122 80.8755101 38.8311525 70.7990221 46.489405 69.5 38.8311525 77.810891 30.5817757 74.9936377 23.9805505 68.265705 31.6773326 66.7889084 23.3463341 73.4175097 19.8193605 71.7637814 14.8064649 66.0568471 18.7450961 74.9936377 23.9805505 70.0238686 29.7052287 80.8755101 37.9956698 70.7990221 45.2721758 70.0238686 40.4529418 80.281851 50.1699898"></polyline>
@@ -199,13 +193,14 @@
           </script>
       </svg>
   </div>
+
   <script type="text/javascript">
-    play("pieces.json");
-    var loaded = function(){
-      document.getElementById("generative-radio-animation")
-      .setAttribute("playing", "1");
+  let svg = document.getElementById("generative-radio-animation")
+    var playing = function (b) {
+      svg.setAttribute("playing", b.toString());
     }
   </script>
+
 </body>
 
 </html>
