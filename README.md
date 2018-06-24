@@ -3,7 +3,7 @@
 To use the generative radio you have to:
 
 * Request *Freesound* access credentials from https://freesound.org/apiv2/apply (an account is required).
-* Copy the *Client secret/Api key* (token) and add it to *config.js*.
+* Copy the *Client secret/Api key* (token) and add it to */js/globals.js*.
 * Upload all files on a server or use a server solution stack such as [*MAMP*](https://www.mamp.info/) or [*XAMPP*](https://www.apachefriends.org/).
    Instructions for *MAMP*:
   * Download, install and launch *MAMP*.

@@ -5,7 +5,7 @@ const state = {
   allPlayers: new Set(),
   context: new AudioContext(),
   freesound: freesound(),
-  freesoundToken: "PZnTCc2l8KUJCURXtIyU5hEuA30nDjItK9HTrSrk"
+  freesoundToken: "token here"
 }
 
 const defaults = {
