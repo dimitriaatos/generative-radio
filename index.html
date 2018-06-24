@@ -3,21 +3,12 @@
 
 <head>
   <title>Generative radio</title>
-  <script src="config.js"></script>
-  <script src="buffer-loader.js"></script>
-  <script src="freesound.js"></script>
-  <script src="structure.js"></script>
-  <script src="generativeradio.js"></script>
+  <script src="./js/moment.min.js"></script>
+  <script type="module" src="./js/startPlaying.js" charset="utf-8"></script>
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <style media="screen">
-    #svg-container {
-      width: 100%;
-      margin-left: auto;
-      margin-right: auto;
-      max-width: 800px;
-    }
-  </style>
+  <link rel="stylesheet" type="text/css" href="styles.css">
+
 </head>
 
 <body>
@@ -183,6 +174,11 @@
                   <path class="rays" d="M88.5547199,281.642342 C88.5547199,281.642342 332.030221,168.661103 340.794632,163.831688 C348.60236,160.377803 361.206701,162.130461 366.870466,166.14409 C378.687489,173.850092 567.589092,324.549666 567.589092,324.549666" id="ray-14"></path>
               </g>
           </g>
+          <style media="screen">
+            #generative-radio-animation{
+              display: block;
+            }
+          </style>
           <script>
           // <![CDATA[
 
@@ -191,21 +187,19 @@
             };
             let rays = document.getElementsByClassName("rays");
             for (let i = 0; i < rays.length; i++) {
-              let r = random(200, 400).toString();
-              rays[i].setAttribute('stroke-dasharray', r);
+              rays[i].setAttribute("stroke-dasharray", random(200, 400).toString());
             }
 
           // ]]>
           </script>
       </svg>
+    <div class="references"></div>
   </div>
-  <script type="text/javascript">
-    play("pieces.json");
-    var loaded = function(){
-      document.getElementById("generative-radio-animation")
-      .setAttribute("playing", "1");
-    }
-  </script>
+  <div id="references" display="0">
+    <h3>References</h3>
+    <p id="freesound-ref"></p>
+    <ul id="sound-ref"></ul>
+  </div>
 </body>
 
 </html>

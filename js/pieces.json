@@ -5,34 +5,34 @@
                 "search":{
                     "text":"dog",
                     "options":{
-                        "page_size":150,
+                        "results":150,
                         "filter":{
-                            "duration":"[* TO 30.0]"
+                            "duration":[0, 30]
                         },
                         "sort":"rating_desc"
                     }
                 },
                 "structure":{
-                    "metro":2000
+                    "metro":2
                 }
             },
             {
                 "search":{
                     "text":"rain",
                     "options":{
-                        "page_size":150,
+                        "results":150,
                         "filter":{
-                            "duration":"[* TO 60.0]"
+                            "duration":[0, 60]
                         },
                         "sort":"rating_desc"
                     }
                 },
                 "structure":{
-                    "metro":3000
+                    "metro":3
                 }
             }
         ],
-        "duration":20000
+        "duration":20
     },
     {
         "elements":[
@@ -40,34 +40,34 @@
                 "search":{
                     "text":"cat",
                     "options":{
-                        "page_size":150,
+                        "results":150,
                         "filter":{
-                            "duration":"[* TO 20.0]"
+                            "duration":[0, 20]
                         },
                         "sort":"rating_desc"
                     }
                 },
                 "structure":{
-                    "metro":5000
+                    "metro":5
                 }
             },
             {
                 "search":{
                     "text":"gun",
                     "options":{
-                        "page_size":50,
+                        "results":50,
                         "filter":{
-                            "duration":"[* TO 30.0]"
+                            "duration":[0, 30]
                         },
                         "sort":"rating_desc"
                     }
                 },
                 "structure":{
-                    "metro":6000
+                    "metro":6
                 }
             }
         ],
-        "duration":40000
+        "duration":40
     },
     {
         "elements":[
@@ -75,33 +75,33 @@
                 "search":{
                     "text":"forest",
                     "options":{
-                        "page_size":150,
+                        "results":150,
                         "filter":{
-                            "duration":"[* TO 30.0]"
+                            "duration":[0, 30]
                         },
                         "sort":"rating_desc"
                     }
                 },
                 "structure":{
-                    "metro":5000
+                    "metro":5
                 }
             },
             {
                 "search":{
                     "text":"water",
                     "options":{
-                        "page_size":50,
+                        "results":50,
                         "filter":{
-                            "duration":"[* TO 30.0]"
+                            "duration":[0, 30]
                         },
                         "sort":"rating_desc"
                     }
                 },
                 "structure":{
-                    "metro":6000
+                    "metro":6
                 }
             }
         ],
-        "duration":20000
+        "duration":20
     }
 ]
