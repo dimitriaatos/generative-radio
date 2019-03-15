@@ -1,6 +1,6 @@
 # generative-radio
 
-To use the generative radio you have to:
+To use the generative radio you have to (these instructions are targeted for non programmers):
 
 * Request *Freesound* access credentials from https://freesound.org/apiv2/apply (an account is required).
 * Copy the *Client secret/Api key* (token) and add it to */js/globals.js*.
