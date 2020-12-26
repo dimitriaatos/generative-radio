@@ -3,7 +3,7 @@
         "elements":[
             {
                 "search":{
-                    "text":"dog",
+                    "text":"rain",
                     "options":{
                         "results":150,
                         "filter":{
@@ -18,7 +18,7 @@
             },
             {
                 "search":{
-                    "text":"rain",
+                    "text":"scream",
                     "options":{
                         "results":150,
                         "filter":{
@@ -38,7 +38,7 @@
         "elements":[
             {
                 "search":{
-                    "text":"cat",
+                    "text":"piano",
                     "options":{
                         "results":150,
                         "filter":{
@@ -53,7 +53,7 @@
             },
             {
                 "search":{
-                    "text":"gun",
+                    "text":"dog",
                     "options":{
                         "results":50,
                         "filter":{
@@ -68,40 +68,5 @@
             }
         ],
         "duration":40
-    },
-    {
-        "elements":[
-            {
-                "search":{
-                    "text":"forest",
-                    "options":{
-                        "results":150,
-                        "filter":{
-                            "duration":[0, 30]
-                        },
-                        "sort":"rating_desc"
-                    }
-                },
-                "structure":{
-                    "metro":5
-                }
-            },
-            {
-                "search":{
-                    "text":"water",
-                    "options":{
-                        "results":50,
-                        "filter":{
-                            "duration":[0, 30]
-                        },
-                        "sort":"rating_desc"
-                    }
-                },
-                "structure":{
-                    "metro":6
-                }
-            }
-        ],
-        "duration":20
     }
 ]

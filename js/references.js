@@ -22,17 +22,17 @@ function reference(sound) {
 }
 
 function playingNow(args) {
-  const animation = document.getElementById("generative-radio-animation");
+  // const animation = document.getElementById("generative-radio-animation");
   const ref = document.getElementById("references");
 
   if (args.status == true) {
     reference(args.sound);
   }
   if (args.active != 0) {
-    animation.setAttribute("playing", "1");
+    // animation.setAttribute("playing", "1");
     ref.setAttribute("display", "1");
   } else {
-    animation.setAttribute("playing", "0");
+    // animation.setAttribute("playing", "0");
     ref.setAttribute("display", "0");
   }
 }

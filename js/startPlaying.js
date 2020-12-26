@@ -27,7 +27,9 @@ window.play = (...args) => {
   return new playElement(element);
 }
 
-
-fetch("./js/pieces.json")
-  .then(response => response.json())
-  .then(pieces => window.autoplay = new playPieces(pieces));
+document.querySelector('#start').addEventListener('click', () => {
+	console.log('start')
+	fetch("./js/pieces.json")
+		.then(response => response.json())
+		.then(pieces => window.autoplay = new playPieces(pieces));
+})
