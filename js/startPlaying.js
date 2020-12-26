@@ -1,3 +1,7 @@
+import {
+  state
+} from "./globals.js";
+
 document.addEventListener("DOMContentLoaded", () => {
   document.getElementById("freesound-ref").innerHTML = `Freesound. Accessed ${moment().format("MMMM DD, YYYY")}. http://www.freesound.org/.`;
 });
@@ -27,9 +31,19 @@ window.play = (...args) => {
   return new playElement(element);
 }
 
-document.querySelector('#start').addEventListener('click', () => {
-	console.log('start')
-	fetch("./js/pieces.json")
-		.then(response => response.json())
-		.then(pieces => window.autoplay = new playPieces(pieces));
-})
+const enablePlayButton = pieces => {
+  const playButton = document.querySelector('#start')
+  playButton.disabled = false
+  playButton.addEventListener('click', () => {
+    state.context.resume().then(
+      () => {
+        if (window.autoplay) window.autoplay.cut()
+        window.autoplay = new playPieces(pieces)
+      }
+    )
+  })
+}
+
+fetch("./js/pieces.json")
+  .then(response => response.json())
+  .then(enablePlayButton);
