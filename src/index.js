@@ -5,8 +5,6 @@ import { state } from './globals.js'
 // } from './references.js'
 import { loadElement, loadPiece } from './loadingFunctions.js'
 
-state.freesound.setToken(state.freesoundToken)
-
 const playSound = class {
 	constructor(url) {
 		this.playing = true
@@ -143,6 +141,7 @@ const GenerativeRadio = class {
 	
 	play(pieces) {
 		this.pieces = pieces || this.pieces
+		console.log(this.pieces)
 		this.player = new playPieces(this.pieces)
 		return this
 	}
@@ -154,6 +153,10 @@ const GenerativeRadio = class {
 
 	set gain(newGain){
 		state.gainNode.gain.value = newGain
+	}
+
+	set token(newToken){
+		state.freesound.setToken(newToken)
 	}
 
 }

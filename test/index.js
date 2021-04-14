@@ -3,7 +3,9 @@ import pieces from './pieces.json'
 
 const gen = new Generative(pieces)
 
-document.querySelector('button').addEventListener('click', gen.play())
+gen.token = 'token'
+
+document.querySelector('button').addEventListener('click', () => { gen.play(pieces) })
 
 document.querySelector('input[type="range"]')
-	.addEventListener('change', ({target: {value}}) => { gen.gain = value})
+	.addEventListener('change', ({target: {value}}) => { gen.gain = value })
