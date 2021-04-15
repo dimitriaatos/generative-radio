@@ -2,7 +2,7 @@ import { NoRepetition, loadBuffer } from './helpers'
 import { state } from './globals'
 import { loadElement, loadPiece } from './loadingFunctions'
 
-let ontrigger
+let ontrigger = () => {}
 
 const playSound = class {
 	constructor(url) {

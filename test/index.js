@@ -19,4 +19,4 @@ gen.ontrigger = ({sound, numPlayers}) => {
 document.querySelector('button').addEventListener('click', () => { gen.play() })
 
 document.querySelector('input[type="range"]')
-	.addEventListener('change', ({target: {value}}) => { gen.gain = value })
+	.addEventListener('input', ({target: {value}}) => { gen.gain = value })
