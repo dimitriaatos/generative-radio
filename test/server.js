@@ -2,7 +2,7 @@ const {exec} = require('child_process')
 const express = require('express')
 const path = require('path')
 
-exec('webpack --config ./test/webpack.config.js', (los) => {console.log(los)})
+exec('webpack --config ./test/webpack.config.js')
 
 const app = express()
 

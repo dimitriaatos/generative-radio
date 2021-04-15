@@ -1,5 +1,5 @@
-import {deepMerge} from './helpers.js'
-import {defaults, state} from './globals.js'
+import {deepMerge} from './helpers'
+import {defaults, state} from './globals'
 
 const formattingOptions = (options) => {
 	options.fields = ['username','name','duration','created','url','license','previews'].join(',')
@@ -41,9 +41,7 @@ const loadPiece = async (piece) => {
 		piece.loaded = true
 		piece.elements = elements
 		return piece
-	} else {
-		return piece
-	}
+	} else { return piece }
 }
 
 export {formattingOptions, loadElement, loadPiece}

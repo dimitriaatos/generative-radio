@@ -9,7 +9,6 @@ const state = {
 	context,
 	freesound: new FreeSound(),
 	gainNode: context.createGain(),
-	freesoundToken: ''
 }
 
 state.gainNode.connect(state.context.destination)

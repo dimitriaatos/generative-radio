@@ -1,9 +1,8 @@
-import { noRep, loadBuffer } from './helpers.js'
-import { state } from './globals.js'
-// import {
-// 	playingNow
-// } from './references.js'
-import { loadElement, loadPiece } from './loadingFunctions.js'
+import { NoRepetition, loadBuffer } from './helpers'
+import { state } from './globals'
+import { loadElement, loadPiece } from './loadingFunctions'
+
+let ontrigger
 
 const playSound = class {
 	constructor(url) {
@@ -29,12 +28,13 @@ const playSound = class {
 			this.onstarted()
 		})
 	}
+	
 	stop() {
 		this.playing = false
 		this.source.stop()
+		return this
 	}
 }
-
 
 const playElement = class {
 	constructor(element) {
@@ -42,32 +42,34 @@ const playElement = class {
 		this.metro
 		loadElement(element).then((response) => {
 			element = response
-			let random = new noRep(element.sounds.length, 1, 1)
+			const random = new NoRepetition(element.sounds.length, 1, 1)
 			this.metro = setInterval(
 				() => {
-					let sound = element.sounds[random.next()]
+					const sound = element.sounds[random.next()]
 					let player = new playSound(sound.previews['preview-lq-mp3'])
 					player.onstarted = () => {
 						state.allPlayers.add(player)
+						ontrigger({sound, numPlayers: state.allPlayers.size})
 					}
 					player.onended = () => {
 						state.allPlayers.delete(player)
+						ontrigger({numPlayers: state.allPlayers.size})
 					}
 				},
 				element.structure.metro * 1000
 			)
 		})
 	}
-
+	
 	stop() {
 		clearInterval(this.metro)
+		return this
 	}
 
 	cut() {
 		this.stop()
-		state.allPlayers.forEach((player) => {
-			player.stop()
-		})
+		state.allPlayers.forEach((player) => { player.stop() })
+		return this
 	}
 }
 
@@ -82,9 +84,7 @@ const playPiece = class {
 			loadPiece(this.piece).then((response) => {
 				this.piece = response
 				//start
-				this.piece.elements.forEach((element) => {
-					this.elementPlayers.push(new playElement(element))
-				})
+				this.elementPlayers = this.piece.elements.map((element) => new playElement(element))
 				//stop
 				setTimeout(
 					() => {
@@ -94,42 +94,42 @@ const playPiece = class {
 					piece.duration * 1000
 				)
 			})
-		}).then(() => {
-			this.onended(this.piece)
-		})
+		}).then(() => { this.onended(this.piece) })
 	}
 	stop(){
 		this.elementPlayers.forEach((player) => player.stop())
+		return this
 	}
 	cut(){
 		this.elementPlayers.forEach((player) => player.cut())
+		return this
 	}
 }
 
 const playPieces = class {
 	constructor(pieces){
-		this.norep = new noRep(pieces.length, 1, 1)
+		this.noRepetition = new NoRepetition(pieces.length, 1, 1)
 		this.piecePlayer
 		this.pieces = pieces
 		const sequence = () => {
 			new Promise((resolve) => {
-				const index = this.norep.next()
+				const index = this.noRepetition.next()
 				this.piecePlayer = new playPiece(this.pieces[index])
 				this.piecePlayer.onended = (response) => {
 					this.pieces[index] = response
 					resolve()
 				}
-			}).then(() => {
-				sequence()
-			})
+			}).then(() => { sequence() })
 		}
 		sequence()
 	}
 	stop(){
 		this.piecePlayer.stop()
+		return this
 	}
 	cut(){
 		this.piecePlayer.cut()
+		return this
 	}
 }
 
@@ -137,11 +137,11 @@ const GenerativeRadio = class {
 	constructor(pieces) {
 		this.pieces = pieces
 		this.player
+		this.callback
 	}
-	
+
 	play(pieces) {
 		this.pieces = pieces || this.pieces
-		console.log(this.pieces)
 		this.player = new playPieces(this.pieces)
 		return this
 	}
@@ -159,7 +159,10 @@ const GenerativeRadio = class {
 		state.freesound.setToken(newToken)
 	}
 
+	set ontrigger(callback){
+		ontrigger = callback
+	}
 }
 
 export default GenerativeRadio
-export {playPieces, playPiece, playElement}
+export { playPieces, playPiece, playElement }
