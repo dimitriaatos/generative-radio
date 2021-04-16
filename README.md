@@ -14,12 +14,13 @@ A browser module that generates music by playing sounds hosted on [Freesound](ht
 git clone https://github.com/dimitriaatos/generative-radio.git
 cd generative-radio
 npm i
+echo "TOKEN=[API token]" > .env
 npm test
 ```
 
-## Use
+Replace `[API token]` with a Freesound API token, you can get one on <https://freesound.org/apiv2/apply/>.
 
-You'll need a Freesound API token, you can get one from <https://freesound.org/apiv2/apply/>
+## Use
 
 `index.js`
 
@@ -29,7 +30,7 @@ import pieces from './pieces'
 
 const gen = new GenerativeRadio(pieces)
 
-gen.token = 'paste your token here'
+gen.token = '[API token]'
 
 // gen.play() should be called after a user gesture (e.g. a click).
 document.addEventListener('click', () => { gen.play() })

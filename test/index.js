@@ -3,7 +3,11 @@ import pieces from './pieces.json'
 
 const gen = new Generative(pieces)
 
-gen.token = 'token'
+// The token is not hard coded to the front end code this way, but it is still public,
+// in future versions the API calls will be handled on the server.
+fetch(window.location.origin+'/token')
+	.then(response => response.text())
+	.then((token) => { gen.token = token })
 
 gen.ontrigger = ({sound, numPlayers}) => {
 	console.log(numPlayers + ' sounds playing.')
