@@ -1,17 +1,18 @@
 import FreeSound from 'freesound-client'
-window.AudioContext = window.AudioContext || window.webkitAudioContext
-
-const context = new AudioContext()
 
 const state = {
 	debugging: false,
 	allPlayers: new Set(),
-	context,
 	freesound: new FreeSound(),
-	gainNode: context.createGain(),
 }
 
-state.gainNode.connect(state.context.destination)
+const initState = () => {
+	window.AudioContext = window.AudioContext || window.webkitAudioContext
+	state.context = new AudioContext()
+	state.gainNode = state.context.createGain()
+	state.gainNode.connect(state.context.destination)
+}
+
 
 const defaults = {
 	element: {
@@ -31,4 +32,4 @@ const defaults = {
 	}
 }
 
-export {state, defaults}
+export {state, defaults, initState}

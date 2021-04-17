@@ -1,5 +1,5 @@
 import { NoRepetition, loadBuffer } from './helpers'
-import { state } from './globals'
+import { state, initState } from './globals'
 import { loadElement, loadPiece } from './loadingFunctions'
 
 let ontrigger = () => {}
@@ -141,6 +141,7 @@ const playPieces = class {
 
 const GenerativeRadio = class {
 	constructor(pieces) {
+		initState()
 		this.pieces = pieces
 		this.player
 		this.callback
