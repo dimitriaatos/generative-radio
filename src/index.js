@@ -32,6 +32,7 @@ const playSound = class {
 	stop() {
 		this.playing = false
 		this.source.stop()
+		this.onended()
 		return this
 	}
 }
@@ -98,18 +99,21 @@ const playPiece = class {
 	}
 	stop(){
 		this.elementPlayers.forEach((player) => player.stop())
+		this.onended(this.piece)
 		return this
 	}
 	cut(){
 		this.elementPlayers.forEach((player) => player.cut())
+		this.onended(this.piece)
 		return this
 	}
 }
 
 const playPieces = class {
-	constructor(pieces){
+	constructor(pieces, playing = true){
 		this.noRepetition = new NoRepetition(pieces.length, 1, 1)
 		this.piecePlayer
+		this.playing = playing
 		this.pieces = pieces
 		const sequence = () => {
 			new Promise((resolve) => {
@@ -119,16 +123,18 @@ const playPieces = class {
 					this.pieces[index] = response
 					resolve()
 				}
-			}).then(() => { sequence() })
+			}).then(() => { this.playing && sequence() })
 		}
 		sequence()
 	}
 	stop(){
 		this.piecePlayer.stop()
+		this.playing = false
 		return this
 	}
 	cut(){
 		this.piecePlayer.cut()
+		this.playing = false
 		return this
 	}
 }
@@ -142,6 +148,7 @@ const GenerativeRadio = class {
 
 	play(pieces) {
 		this.pieces = pieces || this.pieces
+		this.player && this.player.cut()
 		this.player = new playPieces(this.pieces)
 		return this
 	}
