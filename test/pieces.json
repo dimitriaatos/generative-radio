@@ -7,7 +7,7 @@
                     "options":{
                         "results":150,
                         "filter":{
-                            "duration":[0, 30]
+                            "duration":[0, "*"]
                         },
                         "sort":"rating_desc"
                     }

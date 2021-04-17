@@ -40,38 +40,43 @@ document.addEventListener('click', () => { gen.play() })
 
 ```javascript
 export [
-    {
-        elements:[
-            {
-                search: { text: 'rain' },//play a raining sounds
-                structure: { metro: 2 } // every 2 seconds
-            },
-            {
-                search: {
-                    text: 'scream',
-                    options: {
-                        results: 50,
-                        filter: { duration: [0, 60] }, // [min, max] (seconds)
-                        sort: 'rating_desc' // get the first 50 best rated sounds
-                    }
-                },
-                structure: { metro: 10 } // every 10 seconds
-            },
-        ],
-        duration: 10
-    },
-    {
-        elements:[
-            {
-                search: { text: 'dog' },
-                structure: { metro: 1 }
-            },
-            {
-                search: { text: 'train' },
-                structure: { metro: 2 }
-            },
-        ],
-        duration: 60
-    },
+	{
+		elements:[
+			{
+				search: { text: 'rain' },//play a raining sounds
+				structure: { metro: 2 } // every 2 seconds
+			},
+			{
+				search: {
+					text: 'scream',
+					options: {
+						results: 50,
+						filter: { duration: [0, 60] }, // [min, max] (seconds)
+						sort: 'rating_desc' // get the first 50 best rated sounds
+					}
+				},
+				structure: { metro: 10 } // every 10 seconds
+			},
+		],
+		duration: 10
+	},
+	{
+		elements:[
+			{
+				search: {
+					text: 'dog',
+					options: {
+						filter: { duration: [0, '*'] } // no upper limit
+					}
+				},
+				structure: { metro: 1 }
+			},
+			{
+				search: { text: 'train' },
+				structure: { metro: 2 }
+			},
+		],
+		duration: 60
+	}
 ]
 ```

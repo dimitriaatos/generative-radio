@@ -5,8 +5,8 @@ const formattingOptions = (options) => {
 	options.fields = ['username','name','duration','created','url','license','previews'].join(',')
 	if (options.filter) {
 		if (options.filter.duration) {
-			const dur = options.filter.duration
-			options.filter.duration = `[${Math.min(...dur)} TO ${Math.max(...dur)}]`
+			const dur = (i) => Number(options.filter.duration[i]) || '*'
+			options.filter.duration = `[${dur(0)} TO ${dur(1)}]`
 		}
 		if (options.results) {
 			options.page_size = (options.results > 150) ? 150 : options.results
