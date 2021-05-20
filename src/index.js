@@ -45,25 +45,27 @@ const playElement = class {
 		this.metro
 		this.playing = true
 		loadElement(element).then((response) => {
-			state.debug && console.log('			element start')
-			element = response
-			const random = new NoRepetition(element.sounds.length, 1, 1)
-			this.metro = setInterval(
-				() => {
-					state.debug && console.log('			element metro trigger!')
-					const sound = element.sounds[random.next()]
-					const player = new playSound(sound.previews['preview-lq-mp3'])
-					player.onstarted = () => {
-						state.allPlayers.add(player)
-						ontrigger({sound, numPlayers: state.allPlayers.size})
-					}
-					player.onended = () => {
-						state.allPlayers.delete(player)
-						ontrigger({numPlayers: state.allPlayers.size})
-					}
-				},
-				element.structure.metro * 1000
-			)
+			if (this.playing) {
+				state.debug && console.log('			element start')
+				element = response
+				const random = new NoRepetition(element.sounds.length, 1, 1)
+				this.metro = setInterval(
+					() => {
+						state.debug && console.log('			element metro trigger!')
+						const sound = element.sounds[random.next()]
+						const player = new playSound(sound.previews['preview-lq-mp3'])
+						player.onstarted = () => {
+							state.allPlayers.add(player)
+							ontrigger({sound, numPlayers: state.allPlayers.size})
+						}
+						player.onended = () => {
+							state.allPlayers.delete(player)
+							ontrigger({numPlayers: state.allPlayers.size})
+						}
+					},
+					element.structure.metro * 1000
+				)
+			}
 		})
 	}
 	
@@ -95,20 +97,22 @@ const playPiece = class {
 			//loadPiece will resolve immediately if the piece is loaded.
 			loadPiece(this.piece).then((response) => {
 				this.piece = response
-				//start
-				this.elementPlayers = this.piece.elements.map((element) => new playElement(element))
-				//stop
-				setTimeout(
-					() => {
-						if (this.playing) {
-							this.elementPlayers.forEach((player) => player.stop())
-							resolve(piece)
-						} else {
-							reject()
-						}
-					},
-					piece.duration * 1000
-				)
+				if (this.playing) {
+					//start
+					this.elementPlayers = this.piece.elements.map((element) => new playElement(element))
+					//stop
+					setTimeout(
+						() => {
+							if (this.playing) {
+								this.elementPlayers.forEach((player) => player.stop())
+								resolve(piece)
+							} else {
+								reject()
+							}
+						},
+						piece.duration * 1000
+					)
+				}
 			})
 		}).then(() => { this.onended(this.piece) }).catch(()=>{})
 	}
