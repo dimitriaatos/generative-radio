@@ -12,6 +12,7 @@ const playSound = class {
 		this.onended
 		new Promise((resolve, reject) => {
 			loadBuffer(url, state.context).then((response) => {
+				state.debug && console.log('				sound start', this.playing)
 				if (this.playing) {
 					const source = state.context.createBufferSource()
 					source.buffer = response
@@ -30,6 +31,7 @@ const playSound = class {
 	}
 	
 	stop() {
+		state.debug && console.log('				sound stop')
 		this.playing = false
 		this.source.stop()
 		this.onended()
@@ -41,13 +43,16 @@ const playElement = class {
 	constructor(element) {
 		//loadPiece will resolve immediately if the piece is loaded.
 		this.metro
+		this.playing = true
 		loadElement(element).then((response) => {
+			state.debug && console.log('			element start')
 			element = response
 			const random = new NoRepetition(element.sounds.length, 1, 1)
 			this.metro = setInterval(
 				() => {
+					state.debug && console.log('			element metro trigger!')
 					const sound = element.sounds[random.next()]
-					let player = new playSound(sound.previews['preview-lq-mp3'])
+					const player = new playSound(sound.previews['preview-lq-mp3'])
 					player.onstarted = () => {
 						state.allPlayers.add(player)
 						ontrigger({sound, numPlayers: state.allPlayers.size})
@@ -63,12 +68,16 @@ const playElement = class {
 	}
 	
 	stop() {
+		state.debug && console.log('			element stop')
+		this.playing = false
 		clearInterval(this.metro)
 		return this
 	}
 
 	cut() {
-		this.stop()
+		state.debug && console.log('			element cut')
+		this.playing = false
+		clearInterval(this.metro)
 		state.allPlayers.forEach((player) => { player.stop() })
 		return this
 	}
@@ -77,10 +86,12 @@ const playElement = class {
 const playPiece = class {
 	constructor(piece){
 		state.context.status != 'running' && state.context.resume()
+		this.playing = true
 		this.piece = piece
 		this.elementPlayers = []
 		this.onended
-		new Promise((resolve) => {
+		new Promise((resolve, reject) => {
+			state.debug && console.log('		piece start')
 			//loadPiece will resolve immediately if the piece is loaded.
 			loadPiece(this.piece).then((response) => {
 				this.piece = response
@@ -89,20 +100,29 @@ const playPiece = class {
 				//stop
 				setTimeout(
 					() => {
-						this.elementPlayers.forEach((player) => player.stop())
-						resolve(piece)
+						if (this.playing) {
+							this.elementPlayers.forEach((player) => player.stop())
+							resolve(piece)
+						} else {
+							reject()
+						}
 					},
 					piece.duration * 1000
 				)
 			})
-		}).then(() => { this.onended(this.piece) })
+		}).then(() => { this.onended(this.piece) }).catch(()=>{})
 	}
 	stop(){
+		state.debug && console.log('		piece stop')
+		this.playing = false
 		this.elementPlayers.forEach((player) => player.stop())
+		this.elementPlayers = []
 		this.onended(this.piece)
 		return this
 	}
 	cut(){
+		state.debug && console.log('		piece cut')
+		this.playing = false
 		this.elementPlayers.forEach((player) => player.cut())
 		this.onended(this.piece)
 		return this
@@ -117,6 +137,7 @@ const playPieces = class {
 		this.pieces = pieces
 		const sequence = () => {
 			new Promise((resolve) => {
+				state.debug && console.log('	sequence pieces', this.playing)
 				const index = this.noRepetition.next()
 				this.piecePlayer = new playPiece(this.pieces[index])
 				this.piecePlayer.onended = (response) => {
@@ -128,11 +149,13 @@ const playPieces = class {
 		sequence()
 	}
 	stop(){
+		state.debug && console.log('	pieces stop')
 		this.piecePlayer.stop()
 		this.playing = false
 		return this
 	}
 	cut(){
+		state.debug && console.log('	pieces cut')
 		this.piecePlayer.cut()
 		this.playing = false
 		return this
@@ -144,18 +167,27 @@ const GenerativeRadio = class {
 		initState()
 		this.pieces = pieces
 		this.player
-		this.callback
+		this._playing = false
 	}
 
 	play(pieces) {
+		state.debug && console.log('generative play')
 		this.pieces = pieces || this.pieces
-		this.player && this.player.cut()
-		this.player = new playPieces(this.pieces)
+		if (!this._playing) {
+			this.player = new playPieces(this.pieces)
+			this._playing = true
+		}
 		return this
 	}
 
+	get playing() {
+		return this._playing
+	}
+
 	stop() {
-		this.player.cut()
+		state.debug && console.log('generative stop')
+		this.player && this.player.cut()
+		this._playing = false
 		return this
 	}
 
@@ -169,6 +201,10 @@ const GenerativeRadio = class {
 
 	set ontrigger(callback){
 		ontrigger = callback
+	}
+	
+	set debug(val) {
+		state.debug = val
 	}
 }
 
