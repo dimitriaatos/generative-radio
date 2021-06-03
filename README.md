@@ -2,6 +2,10 @@
 
 A browser module that generates music by playing sounds hosted on [Freesound](http://freesound.org/).
 
+## Demo
+
+[http://loskop.radio/generative-radio/](http://loskop.radio/generative-radio/)
+
 ## Installation
 
 `npm i dimitriaatos/generative-radio`
