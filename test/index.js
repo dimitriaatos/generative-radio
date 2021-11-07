@@ -9,12 +9,16 @@ fetch(window.location.origin+'/token')
 	.then(response => response.text())
 	.then((token) => { gen.token = token })
 
+gen.debug = true
+
 gen.ontrigger = ({sound, numPlayers}) => {
-	console.log(numPlayers + ' sounds playing.')
+	console.log(`					${numPlayers} sounds playing.`)
 	if (sound) {
-		console.log(sound.name + ' playing.')
+		console.log(`					${sound.name} playing.`)
 		setInterval(
-			() => { console.log(sound.name + ' stopped.') },
+			() => {
+				console.log(`					${sound.name} stopped.`)
+			},
 			sound.duration * 1000
 		)
 	}

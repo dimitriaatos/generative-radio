@@ -17,7 +17,7 @@ const initState = () => {
 const defaults = {
 	element: {
 		search: {
-			text: 'radio',
+			// text: 'radio',
 			options: {
 				results: 150,
 				filter: {

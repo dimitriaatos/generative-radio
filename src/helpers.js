@@ -37,11 +37,9 @@ const deepMerge = (target, ...sources) => {
 	return deepMerge(target, ...sources)
 }
 
-const loadBuffer = async (url, context) => {
-	const response = await fetch(url)
-	const buffer = await response.arrayBuffer()
-	return await new Promise((resolve, reject) => context.decodeAudioData(buffer, resolve, reject))
-}
+const loadBuffer = async (url, context) => await fetch(url)
+	.then(response => response.arrayBuffer())
+	.then(arrayBuffer => context.decodeAudioData(arrayBuffer))
 
 
 export {

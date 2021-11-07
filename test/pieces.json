@@ -1,72 +1,50 @@
-[
-    {
-        "elements":[
-            {
-                "search":{
-                    "text":"rain",
-                    "options":{
-                        "results":150,
-                        "filter":{
-                            "duration":[0, "*"]
-                        },
-                        "sort":"rating_desc"
-                    }
-                },
-                "structure":{
-                    "metro":2
-                }
-            },
-            {
-                "search":{
-                    "text":"scream",
-                    "options":{
-                        "results":150,
-                        "filter":{
-                            "duration":[0, 60]
-                        },
-                        "sort":"rating_desc"
-                    }
-                },
-                "structure":{
-                    "metro":3
-                }
-            }
-        ],
-        "duration": 10
-    },
-    {
-        "elements":[
-            {
-                "search":{
-                    "text":"piano",
-                    "options":{
-                        "results":150,
-                        "filter":{
-                            "duration":[0, 20]
-                        },
-                        "sort":"rating_desc"
-                    }
-                },
-                "structure":{
-                    "metro":5
-                }
-            },
-            {
-                "search":{
-                    "text":"dog",
-                    "options":{
-                        "results":50,
-                        "filter":{
-                            "duration":[0, 30]
-                        },
-                        "sort":"rating_desc"
-                    }
-                },
-                "structure":{
-                    "metro":6
-                }
-            }
-        ],
-        "duration": 10
-    }
-]
+{
+	"maxDuration": 60,
+	"pieces": [
+		{
+			"elements":[
+					{
+							"search":{
+									"sound": 339809,
+									"options":{
+											"results":150,
+											"filter":{
+													"duration":[5, 10]
+											},
+											"sort":"rating_desc"
+									}
+							},
+							"structure":{
+									"metro": 2,
+									"fade": 0.4
+								}
+							}
+						],
+						"duration": 10,
+						"fade": 10
+					},
+					{
+						"elements":[
+							{
+								"search":{
+									"text": "rain",
+									"options":{
+										"results":150,
+										"filter":{
+											"duration":[5, 10]
+										},
+										"sort":"rating_desc"
+									}
+								},
+								"structure":{
+									"mono": true,
+									"fade": 0.2
+							}
+					}
+			],
+			"duration": 10,
+			"fade": 10
+		}
+	]
+
+}

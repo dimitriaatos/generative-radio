@@ -22,16 +22,20 @@ const loadElement = async (element) => {
 		element = deepMerge({}, defaults.element, element)
 		const options = formattingOptions(element.search.options)
 
-		const {results} = await state.freesound.textSearch(
-			element.search.text,
-			options
-		)
-		element.sounds = results
+		if (element.search.text !== undefined) {
+			const {results} = await state.freesound.textSearch(
+				element.search.text,
+				options
+			)
+			element.sounds = results
+		} else if (element.search.sound !== undefined) {
+			const sound = await state.freesound.getSound(element.search.sound)
+			const {results} = await sound.getSimilar(element.search.options)
+			element.sounds = results
+		}
 		element.loaded = true
-		return element
-	} else {
-		return element
 	}
+	return element
 }
 
 const loadPiece = async (piece) => {
@@ -40,8 +44,8 @@ const loadPiece = async (piece) => {
 		const elements = await Promise.all(elementPromises)
 		piece.loaded = true
 		piece.elements = elements
-		return piece
-	} else { return piece }
+	}
+	return piece
 }
 
 export {formattingOptions, loadElement, loadPiece}

@@ -4,7 +4,7 @@ const path = require('path')
 require('dotenv').config()
 const port = 3000
 
-exec('webpack --config ./test/webpack.config.js')
+exec('webpack --config ./test/webpack.config.js', {}, console.log)
 
 const app = express()
 
