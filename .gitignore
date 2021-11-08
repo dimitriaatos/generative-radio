@@ -1,6 +1,5 @@
 **/node_modules
 test/dist
 package-lock.json
-MESSAGE
 **/.env
 .DS_Store

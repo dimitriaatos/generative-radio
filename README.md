@@ -43,44 +43,51 @@ document.addEventListener('click', () => { gen.play() })
 `pieces.js`
 
 ```javascript
-export [
-	{
-		elements:[
-			{
-				search: { text: 'rain' },//play a raining sounds
-				structure: { metro: 2 } // every 2 seconds
-			},
-			{
-				search: {
-					text: 'scream',
-					options: {
-						results: 50,
-						filter: { duration: [0, 60] }, // [min, max] (seconds)
-						sort: 'rating_desc' // get the first 50 best rated sounds
+export {
+	maxDuration: 60,
+	pieces: [
+		{
+			elements:[
+				{
+					search: { text: 'rain' },//play a raining sounds
+					structure: { metro: 2 } // every 2 seconds
+				},
+				{
+					search: {
+						text: 'scream',
+						options: {
+							results: 50,
+							filter: { duration: [0, 60] }, // [min, max] (seconds)
+							sort: 'rating_desc' // get the first 50 best rated sounds
+						}
+					},
+					structure: { metro: 10 } // every 10 seconds
+				},
+			],
+			duration: 10
+		},
+		{
+			elements:[
+				{
+					search: {
+						sound: 339809, // sound id
+						options: {
+							filter: { duration: [0, '*'] } // no upper limit
+						}
+					},
+					structure: {
+						metro: 1,
+						fade: 0.2 // sound duration percentage to be faded in and out (max: 0.5)
 					}
 				},
-				structure: { metro: 10 } // every 10 seconds
-			},
-		],
-		duration: 10
-	},
-	{
-		elements:[
-			{
-				search: {
-					text: 'dog',
-					options: {
-						filter: { duration: [0, '*'] } // no upper limit
-					}
+				{
+					search: { text: 'train' },
+					structure: { metro: 2 }
 				},
-				structure: { metro: 1 }
-			},
-			{
-				search: { text: 'train' },
-				structure: { metro: 2 }
-			},
-		],
-		duration: 60
-	}
-]
+			],
+			duration: 60,
+			fade: 30 // duration of the piece's fade in and fade out (added to the total duration)
+		}
+	]
+}
 ```

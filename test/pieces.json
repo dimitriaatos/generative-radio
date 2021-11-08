@@ -2,49 +2,44 @@
 	"maxDuration": 60,
 	"pieces": [
 		{
-			"elements":[
-					{
-							"search":{
-									"sound": 339809,
-									"options":{
-											"results":150,
-											"filter":{
-													"duration":[5, 10]
-											},
-											"sort":"rating_desc"
-									}
-							},
-							"structure":{
-									"metro": 2,
-									"fade": 0.4
-								}
-							}
-						],
-						"duration": 10,
-						"fade": 10
-					},
-					{
-						"elements":[
-							{
-								"search":{
-									"text": "rain",
-									"options":{
-										"results":150,
-										"filter":{
-											"duration":[5, 10]
-										},
-										"sort":"rating_desc"
-									}
-								},
-								"structure":{
-									"mono": true,
-									"fade": 0.2
-							}
+			"elements": [{
+				"search": {
+					"sound": 339809,
+					"options": {
+						"results": 150,
+						"filter": {
+							"duration": [5, 10]
+						},
+						"sort": "rating_desc"
 					}
-			],
+				},
+				"structure": {
+					"metro": 2,
+					"fade": 0.4
+				}
+			}],
+			"duration": 10,
+			"fade": 10
+		},
+		{
+			"elements": [{
+				"search": {
+					"text": "rain",
+					"options": {
+						"results": 150,
+						"filter": {
+							"duration": [5, 10]
+						},
+						"sort": "rating_desc"
+					}
+				},
+				"structure": {
+					"mono": true,
+					"fade": 0.2
+				}
+			}],
 			"duration": 10,
 			"fade": 10
 		}
 	]
-
 }
