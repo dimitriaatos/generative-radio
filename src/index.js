@@ -104,7 +104,8 @@ const playElement = class {
 		this.element.loaded || this.load()
 		const random = new NoRepetition(this.element.sounds.length, 1, 1)
 		return new Promise((resolve, reject) => {
-			if (this.element.mono) {
+			console.log(this.element)
+			if (this.element.structure.mono) {
 				const players = []
 				const play = async () => {
 					await players[this.index].play()
