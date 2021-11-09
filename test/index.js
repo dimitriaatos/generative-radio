@@ -15,7 +15,7 @@ gen.ontrigger = ({sound, numPlayers}) => {
 	console.log(`					${numPlayers} sounds playing.`)
 	if (sound) {
 		console.log(`					${sound.name} playing.`)
-		setInterval(
+		setTimeout(
 			() => {
 				console.log(`					${sound.name} stopped.`)
 			},

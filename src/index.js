@@ -11,12 +11,9 @@ const sec2ms = t => t * 1000
 
 const playSound = class {
 	constructor(sound, elementGainNode, options = {}) {
-		this.fadeDurationPrec = 0 // range: 0-0.5
-		this.fadeDuration = Math.min(sound.duration, maxDuration) * this.fadeDurationPrec
-		
-		options = {autoplay: false, ...options}
+		options = {autoplay: false, fadeDurationPrec: 0, ...options}
 		Object.assign(this, options, {sound, elementGainNode})
-
+		this.fadeDuration = Math.min(sound.duration, maxDuration) * this.fadeDurationPrec
 		this.gain = state.context.createGain()
 		this.onstarted = () => {}
 		this.onended = () => {}
@@ -104,7 +101,6 @@ const playElement = class {
 		this.element.loaded || this.load()
 		const random = new NoRepetition(this.element.sounds.length, 1, 1)
 		return new Promise((resolve, reject) => {
-			console.log(this.element)
 			if (this.element.structure.mono) {
 				const players = []
 				const play = async () => {

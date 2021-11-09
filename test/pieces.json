@@ -8,7 +8,7 @@
 					"options": {
 						"results": 150,
 						"filter": {
-							"duration": [5, 10]
+							"duration": [10, 20]
 						},
 						"sort": "rating_desc"
 					}
@@ -28,14 +28,14 @@
 					"options": {
 						"results": 150,
 						"filter": {
-							"duration": [5, 10]
+							"duration": [10, 20]
 						},
 						"sort": "rating_desc"
 					}
 				},
 				"structure": {
 					"mono": true,
-					"fade": 0.2
+					"fade": 0.4
 				}
 			}],
 			"duration": 10,
