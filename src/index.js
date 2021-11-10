@@ -5,15 +5,19 @@ import delay from 'delay'
 import smoothfade from 'smoothfade'
 
 let ontrigger = () => {}
-let maxDuration = 2 * 60
 const ms2sec = t => t / 1000
 const sec2ms = t => t * 1000
 
 const playSound = class {
 	constructor(sound, elementGainNode, options = {}) {
-		options = {autoplay: false, fadeDurationPrec: 0, ...options}
+		options = {
+			autoplay: false,
+			fadeDurationPrec: 0,
+			maxDuration: sound.duration,
+			...options
+		}
 		Object.assign(this, options, {sound, elementGainNode})
-		this.fadeDuration = Math.min(sound.duration, maxDuration) * this.fadeDurationPrec
+		this.fadeDuration = this.maxDuration * this.fadeDurationPrec
 		this.gain = state.context.createGain()
 		this.onstarted = () => {}
 		this.onended = () => {}
@@ -31,26 +35,30 @@ const playSound = class {
 
 	async play() {
 		this.active = true
-		state.debug && console.log('				sound start')
 		this.source.buffer || await this.load()
+		state.debug && console.log('				sound start')
 		this.source.start(0)
 		this.fade.fadeIn({startTime: state.context.currentTime})
 		this.fade.fadeOut({
 			targetValue: 0.001,
-			startTime: state.context.currentTime + this.source.buffer.duration - this.fadeDuration
+			startTime: state.context.currentTime + this.maxDuration - this.fadeDuration
 		})
 		setTimeout(() => {
 			this.stop()
-		}, sec2ms(this.source.buffer.duration))
+		}, sec2ms(this.maxDuration))
 		this.onstarted()
 		return this.source
 	}
 
 	async load() {
-		if (!this.source.buffer) this.source.buffer = await loadBuffer(
+		let buffer
+		state.debug && console.log('				loading sound...')
+		if (!this.source.buffer) buffer = await loadBuffer(
 			this.sound.previews['preview-lq-mp3'],
 			state.context
 		)
+		if (!this.source.buffer) this.source.buffer = buffer
+		state.debug && console.log('				sound loaded!')
 		return this.source
 	}
 	
@@ -81,7 +89,10 @@ const playElement = class {
 		const player = new playSound(
 			sound,
 			this.pieceGainNode,
-			{fadeDurationPrec: Math.min(this.element.structure.fade || 0, 0.5)}
+			{
+				fadeDurationPrec: Math.min(this.element.structure.fade || 0, 0.5),
+				maxDuration: this?.element?.search?.options?.filter?.duration[1] || sound.duration
+			}
 		)
 		player.onstarted = () => {
 			state.allPlayers.add(player)
@@ -100,21 +111,21 @@ const playElement = class {
 		this.playing = true
 		this.element.loaded || this.load()
 		const random = new NoRepetition(this.element.sounds.length, 1, 1)
-		return new Promise((resolve, reject) => {
+		return new Promise(async(resolve, reject) => {
 			if (this.element.structure.mono) {
 				const players = []
-				const play = async () => {
+				const loading = []
+				players[this.index] = this._makePlayer(random.next())
+				while (this.playing) {
+					await loading[this.nextIndex]
 					await players[this.index].play()
 					resolve()
 					await delay(sec2ms(players?.[this.nextIndex]?.source?.fadeDuration || 0))
 					players[this.nextIndex] = this._makePlayer(random.next())
-					players[this.nextIndex].load()
-					await delay(sec2ms(players[this.index].source.buffer.duration - 2 * players[this.index].fadeDuration))
+					loading[this.nextIndex] = players[this.nextIndex].load()
+					await delay(sec2ms(players[this.index].maxDuration - 2 * players[this.index].fadeDuration))
 					this.incrementIndex()
-					this.playing && play()
 				}
-				players[this.index] = this._makePlayer(random.next())
-				play()
 			} else {
 				this.metro = setInterval(
 					async () => {
@@ -139,6 +150,7 @@ const playElement = class {
 
 	async load() {
 		this.element = await loadElement(element)
+		return this.element
 	}
 	
 	stop() {
@@ -241,7 +253,6 @@ const GenerativeRadio = class {
 	constructor(pieces) {
 		initState()
 		this.pieces = pieces.pieces
-		maxDuration = pieces.maxDuration
 		this._playing = false
 	}
 

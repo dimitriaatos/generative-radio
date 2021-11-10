@@ -11,19 +11,6 @@ fetch(window.location.origin+'/token')
 
 gen.debug = true
 
-gen.ontrigger = ({sound, numPlayers}) => {
-	console.log(`					${numPlayers} sounds playing.`)
-	if (sound) {
-		console.log(`					${sound.name} playing.`)
-		setTimeout(
-			() => {
-				console.log(`					${sound.name} stopped.`)
-			},
-			sound.duration * 1000
-		)
-	}
-}
-
 document.querySelector('.start').addEventListener('click', () => { gen.play() })
 document.querySelector('.stop').addEventListener('click', () => { gen.stop() })
 

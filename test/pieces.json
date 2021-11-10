@@ -1,21 +1,20 @@
 {
-	"maxDuration": 60,
 	"pieces": [
 		{
 			"elements": [{
 				"search": {
-					"sound": 339809,
+					"text": "noise",
 					"options": {
 						"results": 150,
 						"filter": {
-							"duration": [10, 20]
+							"duration": [1, 20, 120]
 						},
 						"sort": "rating_desc"
 					}
 				},
 				"structure": {
-					"metro": 2,
-					"fade": 0.4
+					"fade": 0.4,
+					"mono": true
 				}
 			}],
 			"duration": 10,
@@ -24,11 +23,11 @@
 		{
 			"elements": [{
 				"search": {
-					"text": "rain",
+					"sound": 339809,
 					"options": {
 						"results": 150,
 						"filter": {
-							"duration": [10, 20]
+							"duration": [1, 20]
 						},
 						"sort": "rating_desc"
 					}

@@ -41,10 +41,12 @@ const loadBuffer = async (url, context) => await fetch(url)
 	.then(response => response.arrayBuffer())
 	.then(arrayBuffer => context.decodeAudioData(arrayBuffer))
 
+const deepClone = obj => JSON.parse(JSON.stringify(obj))
 
 export {
 	asyncPipe,
 	NoRepetition,
 	deepMerge,
-	loadBuffer
+	loadBuffer,
+	deepClone
 }
