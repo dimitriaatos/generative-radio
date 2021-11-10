@@ -11,6 +11,12 @@ fetch(window.location.origin+'/token')
 
 gen.debug = true
 
+gen.ontrigger = ({sound}) => {
+	if (sound) {
+		console.log(`					${sound.name} playing.`)
+	}
+}
+
 document.querySelector('.start').addEventListener('click', () => { gen.play() })
 document.querySelector('.stop').addEventListener('click', () => { gen.stop() })
 

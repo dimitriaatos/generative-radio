@@ -13,7 +13,24 @@
 					}
 				},
 				"structure": {
-					"fade": 0.4,
+					"fade": 0.2,
+					"mono": true,
+					"metro": 2
+				}
+			},
+			{
+				"search": {
+					"text": "keyboard",
+					"options": {
+						"results": 150,
+						"filter": {
+							"duration": [1, 20, 120]
+						},
+						"sort": "rating_desc"
+					}
+				},
+				"structure": {
+					"fade": 0.0,
 					"mono": true
 				}
 			}],
