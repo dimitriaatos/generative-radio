@@ -4,12 +4,15 @@
 			"es6": true,
 			"node": true
 	},
-	"sourceType": "module",
 	"extends": ["eslint:recommended"],
 	"globals": {
 			"Atomics": "readonly",
 			"SharedArrayBuffer": "readonly"
 	},
+	"parserOptions": {
+		"sourceType": "module",
+		"ecmaVersion": 2020
+},
 	"rules": {
 		"indent": [
 				"error",

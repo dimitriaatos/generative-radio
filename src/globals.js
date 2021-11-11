@@ -4,6 +4,7 @@ const state = {
 	debugging: false,
 	allPlayers: new Set(),
 	freesound: new FreeSound(),
+	ontrigger: () => {},
 }
 
 const initState = () => {

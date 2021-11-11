@@ -38,15 +38,20 @@ const deepMerge = (target, ...sources) => {
 }
 
 const loadBuffer = async (url, context) => await fetch(url)
-	.then(response => response.arrayBuffer())
-	.then(arrayBuffer => context.decodeAudioData(arrayBuffer))
+	.then((response) => response.arrayBuffer())
+	.then((arrayBuffer) => context.decodeAudioData(arrayBuffer))
 
-const deepClone = obj => JSON.parse(JSON.stringify(obj))
+const deepClone = (obj) => JSON.parse(JSON.stringify(obj))
+
+const ms2sec = (t) => t / 1000
+const sec2ms = (t) => t * 1000
 
 export {
 	asyncPipe,
 	NoRepetition,
 	deepMerge,
 	loadBuffer,
-	deepClone
+	deepClone,
+	ms2sec,
+	sec2ms
 }
