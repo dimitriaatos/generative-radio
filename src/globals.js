@@ -28,7 +28,7 @@ const defaults = {
 			}
 		},
 		structure: {
-			metro: 4
+			// metro: 4
 		}
 	}
 }
