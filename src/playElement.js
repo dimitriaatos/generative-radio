@@ -30,7 +30,7 @@ export default class {
 		if (mono && metro) {
 			fadeOptions.fadeDurationPrec = clippedFade
 		} else {
-			fadeOptions.fadeDuration = clippedFade * metro
+			fadeOptions.fadeDuration = clippedFade * (metro || 1)
 		}
 		const player = new playSound(
 			sound,
