@@ -26,11 +26,11 @@ export default class {
 			Math.min(metro, sound.duration) :
 			(this?.element?.search?.options?.filter?.duration[1] || sound.duration)
 		
-		const clippedFade = Math.min(this.element.structure.fade || 0, 0.5)
+		const clippedFadePrec = Math.min(this.element.structure.fade || 0, 0.5)
 		if (mono && metro) {
-			fadeOptions.fadeDurationPrec = clippedFade
+			fadeOptions.fadeDuration = clippedFadePrec * metro
 		} else {
-			fadeOptions.fadeDuration = clippedFade * (metro || 1)
+			fadeOptions.fadeDurationPrec = clippedFadePrec
 		}
 		const player = new playSound(
 			sound,
