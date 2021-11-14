@@ -14,9 +14,9 @@ export default class {
 		this.autoplay && this.play()
 		this.started = false
 		this.playing = false
-		this.index = 0
-		this.players = []
-		this.loading = []
+		this.player
+		this.nextPlayer
+		this.newPlayerLoad
 	}
 
 	_makePlayer(index, mono, metro) {
@@ -24,7 +24,7 @@ export default class {
 		const fadeOptions = {}
 		const maxDuration = mono && metro ?
 			Math.min(metro, sound.duration) :
-			(this?.element?.search?.options?.filter?.duration[1] || sound.duration)
+			(Math.min(this?.element?.search?.options?.filter?.duration[1], sound.duration) || sound.duration)
 		
 		const clippedFadePrec = Math.min(this.element.structure.fade || 0, 0.5)
 		if (mono && metro) {
@@ -59,28 +59,29 @@ export default class {
 		const random = new NoRepetition(this.element.sounds.length, 1, 1)
 		// eslint-disable-next-line no-async-promise-executor
 		return new Promise(async (resolve) => {
+			const {mono, metro, fade} = this.element.structure
 			if (!this.element.structure.metro) {
-				this.players[this.index] = this._makePlayer(
+				this.player = this._makePlayer(
 					random.next(),
-					this.element.structure.mono,
-					this.element.structure.metro
+					mono,
+					metro
 				)
 				while (this.playing) {
-					await this.loading[this.nextIndex]
-					await this.players[this.index].play()
-					resolve()
-					await delay(sec2ms(this.players?.[this.nextIndex]?.source?.fadeDuration || 0))
-					this.players[this.nextIndex] = this._makePlayer(
+					await this.newPlayerLoad
+					await this.player.play()
+					this.started || (this.started = true) && resolve()
+
+					this.nextPlayer = this._makePlayer(
 						random.next(),
-						this.element.structure.mono,
-						this.element.structure.metro
+						mono,
+						metro
 					)
-					this.loading[this.nextIndex] = this.players[this.nextIndex].load()
-					await delay(sec2ms(this.players[this.index].maxDuration - 2 * this.players[this.index].fadeDuration))
-					this.incrementIndex()
+					this.newPlayerLoad = this.nextPlayer.load()
+
+					await delay(sec2ms(this.player.maxDuration - this.player.fadeDuration))
+					this.player = this.nextPlayer
 				}
 			} else {
-				const {mono, metro, fade} = this.element.structure
 				const metroInterval = mono ? metro * (1 - fade) : metro
 				this.metro = setInterval(
 					async () => {
@@ -97,14 +98,6 @@ export default class {
 				)
 			}
 		})
-	}
-
-	get nextIndex(){
-		return (this.index + 1) % 2
-	}
-
-	incrementIndex(){
-		return this.index = this.nextIndex
 	}
 
 	async load() {

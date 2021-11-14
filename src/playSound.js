@@ -1,6 +1,7 @@
 import { loadBuffer, sec2ms } from './helpers'
 import { state } from './globals'
 import smoothfade from 'smoothfade'
+import delay from 'delay'
 
 export default class {
 	constructor(sound, elementGainNode, options = {}) {
@@ -19,8 +20,8 @@ export default class {
 		this.fade = smoothfade(state.context, this.gain, {startValue: 0.001, fadeLength: this.fadeDuration})
 		
 		this.source.onended = () => {
-			this.onended()
 			this.active = false
+			this.onended()
 		}
 		this.source.connect(this.gain)
 		this.gain.connect(this.elementGainNode)
@@ -32,14 +33,9 @@ export default class {
 		this.source.buffer || await this.load()
 		state.debug && console.log('				sound start')
 		this.source.start(0)
-		this.fade.fadeIn({startTime: state.context.currentTime})
-		this.fade.fadeOut({
-			targetValue: 0.001,
-			startTime: state.context.currentTime + this.maxDuration - this.fadeDuration
-		})
-		setTimeout(() => {
-			this.stop()
-		}, sec2ms(this.maxDuration))
+		this.fade.fadeIn()
+		delay(sec2ms(this.maxDuration - this.fadeDuration)).then(this.fade.fadeOut)
+		delay(sec2ms(this.maxDuration)).then(this.stop)
 		this.onstarted()
 		return this.source
 	}
@@ -57,10 +53,12 @@ export default class {
 	}
 	
 	stop() {
-		state.debug && console.log('				sound stop')
-		this.active = false
-		this.source.stop()
-		this.onended()
+		if (this) {
+			state.debug && console.log('				sound stop')
+			this.active = false
+			this.source.stop()
+			this.onended()
+		}
 		return this
 	}
 }
