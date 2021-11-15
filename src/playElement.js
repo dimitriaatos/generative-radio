@@ -77,8 +77,7 @@ export default class {
 						metro
 					)
 					this.newPlayerLoad = this.nextPlayer.load()
-
-					await delay(sec2ms(this.player.maxDuration - this.player.fadeDuration))
+					await delay(sec2ms(this.player.maxDuration - 1.5 * this.player.fadeDuration))
 					this.player = this.nextPlayer
 				}
 			} else {

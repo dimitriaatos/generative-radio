@@ -17,7 +17,11 @@ export default class {
 		this.onstarted = () => {}
 		this.onended = () => {}
 		this.source = state.context.createBufferSource()
-		this.fade = smoothfade(state.context, this.gain, {startValue: 0.001, fadeLength: this.fadeDuration})
+		this.fade = smoothfade(state.context, this.gain, {
+			startValue: 0.001,
+			fadeLength: this.fadeDuration,
+			type: 'exponential'
+		})
 		
 		this.source.onended = () => {
 			this.active = false
