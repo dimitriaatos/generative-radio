@@ -46,7 +46,10 @@ const deepClone = (obj) => JSON.parse(JSON.stringify(obj))
 const ms2sec = (t) => t / 1000
 const sec2ms = (t) => t * 1000
 
+const safeChain = (string, obj) => string.split('.').reduce((res, el) => res = res && res[el], obj)
+
 export {
+	safeChain,
 	asyncPipe,
 	NoRepetition,
 	deepMerge,

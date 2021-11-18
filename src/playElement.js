@@ -1,4 +1,4 @@
-import { NoRepetition, sec2ms } from './helpers'
+import { NoRepetition, safeChain, sec2ms } from './helpers'
 import { state } from './globals'
 import { loadElement } from './loadingFunctions'
 import delay from 'delay'
@@ -24,7 +24,7 @@ export default class {
 		const fadeOptions = {}
 		const maxDuration = mono && metro ?
 			Math.min(metro, sound.duration) :
-			(Math.min(this?.element?.search?.options?.filter?.duration[1], sound.duration) || sound.duration)
+			(Math.min(safeChain('element.search.options.filter.duration.1', this), sound.duration) || sound.duration)
 		
 		const clippedFadePrec = Math.min(this.element.structure.fade || 0, 0.5)
 		if (mono && metro) {

@@ -1,4 +1,4 @@
-import { sec2ms } from './helpers'
+import { safeChain, sec2ms } from './helpers'
 import { state } from './globals'
 import { loadPiece } from './loadingFunctions'
 import delay from 'delay'
@@ -20,7 +20,7 @@ export default class {
 
 	async play() {
 		state.debug && console.log('		loading piece...')
-		state.debug && console.log(`		${this.piece.elements.map((element) => element.search?.text || element.search?.sound).join(', ')}`)
+		state.debug && console.log(`		${this.piece.elements.map((element) => safeChain('search.text', element) || safeChain('search.sound', element)).join(', ')}`)
 		this.piece = await loadPiece(this.piece)
 		state.debug && console.log('		piece loaded!')
 		if (this.playing) {
