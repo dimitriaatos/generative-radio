@@ -69,7 +69,7 @@ export default class {
 				while (this.playing) {
 					await this.newPlayerLoad
 					await this.player.play()
-					this.started || (this.started = true) && resolve()
+					this.started || (this.started = true) && resolve(true)
 
 					this.nextPlayer = this._makePlayer(
 						random.next(),
@@ -90,7 +90,7 @@ export default class {
 							metro
 						)
 						await player.play()
-						this.started || resolve()
+						this.started || resolve(true)
 						this.started = true
 					},
 					sec2ms(metroInterval)
@@ -109,7 +109,6 @@ export default class {
 		this.started = false
 		this.playing = false
 		clearInterval(this.metro)
-		return this
 	}
 
 	cut() {
@@ -118,6 +117,5 @@ export default class {
 		this.playing = false
 		clearInterval(this.metro)
 		state.allPlayers.forEach((player) => { player.stop() })
-		return this
 	}
 }

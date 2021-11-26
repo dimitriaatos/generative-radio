@@ -5,7 +5,7 @@ const asyncPipe = (...fns) => (arg) => fns.reduce((p, f) => p.then(f), Promise.r
 exports.asyncPipe = asyncPipe;
 const NoRepetition = class {
     constructor(max, waiting, reuse) {
-        const fillRange = (start, end) => Array(end - start + 1).fill().map((item, index) => start + index);
+        const fillRange = (start, end) => Array(end - start + 1).fill(0).map((item, index) => start + index);
         this.waiting = waiting;
         this.reuse = reuse;
         this.possible = fillRange(0, max - 1);

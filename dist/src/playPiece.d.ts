@@ -7,6 +7,6 @@ export default class _default {
     onended: () => void;
     fade: any;
     play(): Promise<void>;
-    stop(timestamp: any): Promise<default>;
-    cut(): default;
+    stop(timestamp: any): Promise<void>;
+    cut(): void;
 }

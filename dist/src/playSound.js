@@ -63,7 +63,6 @@ class default_1 {
             this.source.stop();
             this.onended();
         }
-        return this;
     }
 }
 exports.default = default_1;

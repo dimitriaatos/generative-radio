@@ -10,7 +10,7 @@ export default class _default {
     playing: boolean;
     pieces: any;
     piecePlayer: playPiece;
-    stop(): default;
-    cut(): default;
+    stop(): void;
+    cut(): void;
 }
 import playPiece from "./playPiece";

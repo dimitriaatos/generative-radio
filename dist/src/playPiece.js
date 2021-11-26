@@ -41,14 +41,12 @@ class default_1 {
         this.elementPlayers.forEach((player) => player.stop());
         this.elementPlayers = [];
         this.onended(this.piece);
-        return this;
     }
     cut() {
         globals_1.state.debug && console.log('		piece cut');
         this.playing = false;
         this.elementPlayers.forEach((player) => player.cut());
         this.onended(this.piece);
-        return this;
     }
 }
 exports.default = default_1;

@@ -11,7 +11,7 @@ export default class _default {
     metro: NodeJS.Timer | undefined;
     load(): Promise<any>;
     element: any;
-    stop(): default;
-    cut(): default;
+    stop(): void;
+    cut(): void;
 }
 import playSound from "./playSound";

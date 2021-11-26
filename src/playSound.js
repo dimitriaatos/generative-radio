@@ -63,6 +63,5 @@ export default class {
 			this.source.stop()
 			this.onended()
 		}
-		return this
 	}
 }

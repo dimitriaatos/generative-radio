@@ -39,7 +39,6 @@ export default class {
 		this.elementPlayers.forEach((player) => player.stop())
 		this.elementPlayers = []
 		this.onended(this.piece)
-		return this
 	}
 	
 	cut(){
@@ -47,6 +46,5 @@ export default class {
 		this.playing = false
 		this.elementPlayers.forEach((player) => player.cut())
 		this.onended(this.piece)
-		return this
 	}
 }

@@ -9,5 +9,5 @@ export default class _default {
     active: boolean;
     play(): Promise<any>;
     load(): Promise<any>;
-    stop(): default;
+    stop(): void;
 }

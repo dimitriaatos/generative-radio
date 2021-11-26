@@ -63,7 +63,7 @@ class default_1 {
                 while (this.playing) {
                     await this.newPlayerLoad;
                     await this.player.play();
-                    this.started || (this.started = true) && resolve();
+                    this.started || (this.started = true) && resolve(true);
                     this.nextPlayer = this._makePlayer(random.next(), mono, metro);
                     this.newPlayerLoad = this.nextPlayer.load();
                     await (0, delay_1.default)((0, helpers_1.sec2ms)(this.player.maxDuration - 1.5 * this.player.fadeDuration));
@@ -75,7 +75,7 @@ class default_1 {
                 this.metro = setInterval(async () => {
                     const player = this._makePlayer(random.next(), mono, metro);
                     await player.play();
-                    this.started || resolve();
+                    this.started || resolve(true);
                     this.started = true;
                 }, (0, helpers_1.sec2ms)(metroInterval));
             }
@@ -90,7 +90,6 @@ class default_1 {
         this.started = false;
         this.playing = false;
         clearInterval(this.metro);
-        return this;
     }
     cut() {
         globals_1.state.debug && console.log('			element cut');
@@ -98,7 +97,6 @@ class default_1 {
         this.playing = false;
         clearInterval(this.metro);
         globals_1.state.allPlayers.forEach((player) => { player.stop(); });
-        return this;
     }
 }
 exports.default = default_1;

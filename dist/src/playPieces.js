@@ -19,7 +19,7 @@ class default_1 {
                 this.piecePlayer = new playPiece_1.default(this.pieces[index]);
                 this.piecePlayer.onended = (response) => {
                     this.pieces[index] = response;
-                    resolve();
+                    resolve(resolve);
                 };
                 this.piecePlayer.play();
             }).then(() => { this.playing && sequence(); });
@@ -30,13 +30,11 @@ class default_1 {
         globals_1.state.debug && console.log('	pieces stop');
         this.piecePlayer.stop();
         this.playing = false;
-        return this;
     }
     cut() {
         globals_1.state.debug && console.log('	pieces cut');
         this.piecePlayer.cut();
         this.playing = false;
-        return this;
     }
 }
 exports.default = default_1;
