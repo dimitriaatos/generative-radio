@@ -1,4 +1,4 @@
-import Generative from './../src/index'
+import Generative from './../dist/src/index'
 import pieces from './pieces.json'
 
 const gen = new Generative(pieces)
