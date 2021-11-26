@@ -44,7 +44,6 @@ document.addEventListener('click', () => { gen.play() })
 
 ```javascript
 export {
-  maxDuration: 60,
   pieces: [
     {
       elements:[
