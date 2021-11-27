@@ -1,10 +1,18 @@
 const {exec} = require('child_process')
 const express = require('express')
 const path = require('path')
+const webpack = require('webpack')
+const webpackConfig = require('./webpack.config')
 require('dotenv').config()
 const port = 3000
 
-exec('webpack --config ./test/webpack.config.js', {}, console.log)
+webpack(webpackConfig, (err, stats) => {
+  if (err || stats.hasErrors()) {
+    console.log('err')
+  }
+	console.log('ok')
+});
+
 
 const app = express()
 

@@ -5,7 +5,11 @@ export default class _default {
     piece: any;
     elementPlayers: any[];
     onended: () => void;
-    fade: any;
+    fade: {
+        fadeIn(timestamp?: number): void;
+        fadeOut(timestamp?: number): void;
+        fadeTo(timestamp: number | undefined, target: any): void;
+    };
     play(): Promise<void>;
     stop(timestamp: any): Promise<void>;
     cut(): void;

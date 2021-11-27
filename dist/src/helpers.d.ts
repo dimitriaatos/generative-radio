@@ -1,3 +1,10 @@
+export const Fade: {
+    new (context: any, gainNode: any, duration: any): {
+        fadeIn(timestamp?: number): void;
+        fadeOut(timestamp?: number): void;
+        fadeTo(timestamp: number | undefined, target: any): void;
+    };
+};
 export function safeChain(string: any, obj: any): any;
 export function asyncPipe(...fns: any[]): (arg: any) => any;
 export const NoRepetition: {

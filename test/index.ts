@@ -1,4 +1,4 @@
-import Generative from './../dist/src/index'
+import Generative from '../dist/src/index'
 import pieces from './pieces.json'
 
 const gen = new Generative(pieces)
@@ -17,8 +17,8 @@ gen.ontrigger = ({sound}) => {
 	}
 }
 
-document.querySelector('.start').addEventListener('click', () => { gen.play() })
-document.querySelector('.stop').addEventListener('click', () => { gen.stop() })
+document.querySelector('.start')!.addEventListener('click', () => { gen.play() })
+document.querySelector('.stop')!.addEventListener('click', () => { gen.stop() })
 
-document.querySelector('input[type="range"]')
-	.addEventListener('input', ({target: {value}}) => { gen.gain = value })
+document.querySelector('input[type="range"]')!
+	.addEventListener('input', (event) => { gen.gain = (event.target as HTMLInputElement).value })

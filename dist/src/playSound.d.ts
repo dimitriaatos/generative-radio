@@ -5,7 +5,11 @@ export default class _default {
     onstarted: () => void;
     onended: () => void;
     source: any;
-    fade: any;
+    fade: {
+        fadeIn(timestamp?: number): void;
+        fadeOut(timestamp?: number): void;
+        fadeTo(timestamp: number | undefined, target: any): void;
+    };
     active: boolean;
     play(): Promise<any>;
     load(): Promise<any>;

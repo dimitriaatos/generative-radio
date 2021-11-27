@@ -1,21 +1,20 @@
-import { safeChain, sec2ms } from './helpers'
+import { safeChain, sec2ms, Fade } from './helpers'
 import { state } from './globals'
 import { loadPiece } from './loadingFunctions'
 import delay from 'delay'
-import smoothfade from 'smoothfade'
 import playElement from './playElement'
 
 export default class {
 	constructor(piece){
 		state.context.status != 'running' && state.context.resume()
 		this.gain = state.context.createGain()
-		this.gain.gain.setValueAtTime(0, state.context.currentTime)
+		this.gain.gain.setValueAtTime(0.001, state.context.currentTime)
 		this.gain.connect(state.gainNode)
 		this.playing = true
 		this.piece = piece
 		this.elementPlayers = []
 		this.onended = () => {}
-		this.fade = smoothfade(state.context, this.gain, {startValue: 0.001, fadeLength: this.piece.fade})
+		this.fade = new Fade(state.context, this.gain, this.piece.fade)
 	}
 
 	async play() {
@@ -26,13 +25,13 @@ export default class {
 		if (this.playing) {
 			this.elementPlayers = this.piece.elements.map((element) => new playElement(element, this.gain))
 			await Promise.any(this.elementPlayers.map((e) => e.play()))
-			this.fade.fadeIn({targetValue: 1})
+			this.fade.fadeIn()
 			this.stop(sec2ms(state.context.currentTime + this.piece.duration))
 		}
 	}
 
 	async stop(timestamp){
-		this.fade.fadeOut({targetValue: 0.001, startTime: timestamp})
+		this.fade.fadeOut(timestamp)
 		await delay(sec2ms(this.piece.duration + 2*this.piece.fade))
 		state.debug && console.log('		piece stop')
 		this.playing = false

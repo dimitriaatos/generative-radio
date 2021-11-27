@@ -3,7 +3,7 @@ declare const GenerativeRadio: {
     new (pieces: any): {
         pieces: any;
         _playing: boolean;
-        play(pieces: any): any;
+        play(pieces?: boolean): any;
         player: playPieces | undefined;
         readonly playing: boolean;
         stop(): any;

@@ -3,17 +3,21 @@ const path = require('path')
 module.exports = {
 	mode: 'development',
 	devtool: 'source-map',
-	// watch: true,
-	entry: path.resolve(__dirname, './index.js'),
+	entry: path.resolve(__dirname, './index.ts'),
 	output: {
 		filename: 'index.js',
 		path: path.resolve(__dirname, './dist'),
 	},
-	module: { 
+	module: {
 		rules: [
 			{
-				test: /\.(tsx?|js)$/,
-				use: 'ts-loader',
+				test: /\.(ts|js)$/,
+				use: [{
+					loader: 'ts-loader',
+					options: {
+						configFile: path.resolve(__dirname, './tsconfig.json')
+					}
+				}],
 				exclude: /node_modules/,
 			}
 		]

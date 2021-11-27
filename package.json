@@ -5,6 +5,7 @@
   "main": "dist/src/index.js",
   "scripts": {
     "test": "node ./test/server.js",
+		"dev": "./node_modules/typescript/bin/tsc -w",
     "build": "./node_modules/typescript/bin/tsc"
   },
   "repository": {

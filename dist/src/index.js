@@ -17,9 +17,9 @@ const GenerativeRadio = class {
         this.pieces = pieces.pieces;
         this._playing = false;
     }
-    play(pieces) {
+    play(pieces = false) {
         globals_1.state.debug && console.log('generative play');
-        this.pieces = pieces || this.pieces;
+        this.pieces = (pieces || this.pieces);
         if (!this._playing) {
             this.player = new playPieces_1.default(this.pieces);
             this._playing = true;

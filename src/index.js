@@ -10,9 +10,9 @@ const GenerativeRadio = class {
 		this._playing = false
 	}
 
-	play(pieces) {
+	play(pieces = false) {
 		state.debug && console.log('generative play')
-		this.pieces = pieces || this.pieces
+		this.pieces = (pieces || this.pieces)
 		if (!this._playing) {
 			this.player = new playPieces(this.pieces)
 			this._playing = true
