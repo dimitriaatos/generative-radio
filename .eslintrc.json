@@ -1,39 +1,17 @@
 {
 	"env": {
-			"browser": true,
-			"es6": true,
-			"node": true
+		"browser": true,
+		"es2021": true,
+		"node": true
 	},
-	"extends": ["eslint:recommended"],
-	"globals": {
-			"Atomics": "readonly",
-			"SharedArrayBuffer": "readonly"
+	"extends": [
+		"eslint:recommended",
+		"plugin:prettier/recommended"
+	],
+	"rules": {
+		"no-unused-vars": "warn"
 	},
 	"parserOptions": {
-		"sourceType": "module",
-		"ecmaVersion": 2020
-},
-	"rules": {
-		"ignorePatterns": ["**/dist/*.js"],
-		"indent": [
-				"error",
-				"tab"
-		],
-		"arrow-parens": ["error", "always"],
-		"arrow-body-style": ["error", "as-needed"],
-		"prefer-arrow-callback": "error",
-		"arrow-spacing": "error",
-		"linebreak-style": [
-				"error",
-				"unix"
-		],
-		"quotes": [
-				"error",
-				"single"
-		],
-		"semi": [
-				"error",
-				"never"
-		]
+		"sourceType": "module"
 	}
 }
