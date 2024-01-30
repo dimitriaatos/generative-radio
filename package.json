@@ -1,39 +1,53 @@
 {
-  "name": "generative-radio",
-  "version": "1.0.0",
-  "description": "",
-  "main": "dist/src/index.js",
-  "scripts": {
-    "test": "node ./test/server.js",
-    "dev": "./node_modules/typescript/bin/tsc -w",
-    "build": "./node_modules/typescript/bin/tsc"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/dimitriaatos/generative-radio.git"
-  },
-  "author": "",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/dimitriaatos/generative-radio/issues"
-  },
-  "homepage": "https://github.com/dimitriaatos/generative-radio#readme",
-  "dependencies": {
-    "delay": "^5.0.0",
-    "freesound-client": "^0.5.0",
-    "typescript": "^4.5.2",
-    "url": "^0.11.0"
-  },
-  "devDependencies": {
+	"name": "generative-radio",
+	"version": "0.0.1",
+	"description": "",
+	"main": "dist/index.js",
+	"type": "module",
+	"scripts": {
+		"start": "tsc && node dist/index.js",
+		"lint": "eslint -f unix \"src/**/*.{ts,tsx}\"",
+		"example": "tsc && node dist/examples/simple/index.js",
+		"docs:build": "./node_modules/.bin/typedoc",
+		"docs:dev": "./node_modules/.bin/typedoc --watch ./src/ & open ./dist/docs/index.html"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/dimitriaatos/generative-radio.git"
+	},
+	"author": "",
+	"license": "ISC",
+	"bugs": {
+		"url": "https://github.com/dimitriaatos/generative-radio/issues"
+	},
+	"homepage": "https://github.com/dimitriaatos/generative-radio#readme",
+	"dependencies": {
+		"@microsoft/tsdoc": "^0.14.2",
+		"@microsoft/tsdoc-config": "^0.16.2",
+		"@tsconfig/node18": "^18.2.2",
+		"cross-fetch": "^4.0.0",
+		"eslint-plugin-tsdoc": "^0.2.17",
+		"freesound-client": "^0.5.0",
+		"music-metadata": "^7.14.0",
+		"node-web-audio-api": "^0.14.0",
+		"speaker": "^0.5.4",
+		"throttle": "^1.0.3",
+		"ts-deepmerge": "^6.2.0",
+		"url": "^0.11.0"
+	},
+	"devDependencies": {
+		"@types/node": "^20.11.0",
+		"@typescript-eslint/eslint-plugin": "^6.19.0",
 		"dotenv": "^10.0.0",
-    "eslint": "^8.2.0",
+		"eslint": "^8.2.0",
 		"eslint-config-prettier": "^8.6.0",
-    "eslint-plugin-jsonc": "^2.0.0",
-    "express": "^4.17.1",
-    "stylelint": "^14.0.1",
-    "stylelint-config-standard": "^23.0.0",
-    "stylelint-order": "^5.0.0",
-    "ts-loader": "^9.2.6",
-    "webpack": "^5.64.4"
-  }
+		"eslint-plugin-jsonc": "^2.0.0",
+		"express": "^4.18.2",
+		"stylelint": "^14.0.1",
+		"stylelint-config-standard": "^23.0.0",
+		"stylelint-order": "^5.0.0",
+		"ts-loader": "^9.2.6",
+		"typescript": "^5.3.3",
+		"webpack": "^5.64.4"
+	}
 }

@@ -1,13 +1,13 @@
-{
-	"pieces": [
-		{
-			"elements": [{
+[
+	{
+		"elements": [
+			{
 				"search": {
 					"text": "noise",
 					"options": {
 						"results": 150,
 						"filter": {
-							"duration": [1, 20, 120]
+							"duration": [1, 20]
 						},
 						"sort": "rating_desc"
 					}
@@ -24,7 +24,7 @@
 					"options": {
 						"results": 150,
 						"filter": {
-							"duration": [1, 20, 120]
+							"duration": [1, 20]
 						},
 						"sort": "rating_desc"
 					}
@@ -33,12 +33,14 @@
 					"fade": 0.0,
 					"mono": true
 				}
-			}],
-			"duration": 10,
-			"fade": 10
-		},
-		{
-			"elements": [{
+			}
+		],
+		"duration": 10,
+		"fade": 10
+	},
+	{
+		"elements": [
+			{
 				"search": {
 					"sound": 339809,
 					"options": {
@@ -53,9 +55,9 @@
 					"mono": true,
 					"fade": 0.4
 				}
-			}],
-			"duration": 10,
-			"fade": 10
-		}
-	]
-}
+			}
+		],
+		"duration": 10,
+		"fade": 10
+	}
+]
