@@ -1,9 +1,10 @@
 import { createFade } from './helpers.js'
 import { ElementWith, PieceWith, PiecesWith } from './types/PiecesWith.js'
 import { LoadedSounds } from './types/Sounds.js'
+import { Context } from './types/Types.js'
 
-const connectElement =
-	(context: OfflineAudioContext) =>
+const playElement =
+	(context: Context) =>
 	(
 		element: ElementWith<LoadedSounds>,
 		destination: AudioNode,
@@ -27,14 +28,14 @@ const connectElement =
 		})
 	}
 
-const connectPiece =
-	(context: OfflineAudioContext) =>
+const playPiece =
+	(context: Context) =>
 	(
 		piece: PieceWith<LoadedSounds>,
 		destination: AudioNode,
 		offset: number
 	): void => {
-		const connect = connectElement(context)
+		const play = playElement(context)
 		piece.schedule.forEach((timestamp) => {
 			const gain = context.createGain()
 			gain.connect(destination)
@@ -43,28 +44,28 @@ const connectPiece =
 			fadeIn(piece.fade, offset + timestamp)
 			fadeOut(piece.fade, offset + timestamp + piece.duration)
 			piece.elements.forEach((element) => {
-				connect(element, gain, offset)
+				play(element, gain, offset)
 			})
 		})
 	}
 
-const connectPieces =
-	(context: OfflineAudioContext) =>
+const playPieces =
+	(context: Context) =>
 	(
 		pieces: PiecesWith<LoadedSounds>,
 		destination: AudioNode,
 		offset: number
 	): void => {
-		const connect = connectPiece(context)
-		pieces.forEach((piece) => connect(piece, destination, offset))
+		const play = playPiece(context)
+		pieces.forEach((piece) => play(piece, destination, offset))
 	}
 
-const connect = (context: OfflineAudioContext) => {
+const play = (context: Context) => {
 	return {
-		pieces: connectPieces(context),
-		piece: connectPiece(context),
-		element: connectElement(context),
+		pieces: playPieces(context),
+		piece: playPiece(context),
+		element: playElement(context),
 	}
 }
 
-export default connect
+export default play

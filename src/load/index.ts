@@ -1,25 +1,23 @@
-import { FreeSoundType } from '../types/Types.js'
+import { Context, FreeSoundType } from '../types/Types.js'
 import { loadElement, loadPiece, loadPieces } from './freesound.js'
 import {
-	loadSound,
+	loadElementSounds,
 	loadPieceSounds,
 	loadPiecesSounds,
-	loadElementSounds,
+	loadSound,
 } from './sounds.js'
 
-const isContext = (
-	param: OfflineAudioContext | FreeSoundType
-): param is OfflineAudioContext => {
-	return (param as OfflineAudioContext).length !== undefined
+type LoadParam = Context | FreeSoundType
+
+const isAnyContext = (param: LoadParam): param is Context => {
+	return (param as Context).sampleRate !== undefined
 }
 
-const isFreeSound = (
-	param: OfflineAudioContext | FreeSoundType
-): param is FreeSoundType => {
+const isFreeSound = (param: LoadParam): param is FreeSoundType => {
 	return (param as FreeSoundType).search !== undefined
 }
 
-export function load(param: OfflineAudioContext): {
+export function load(param: Context): {
 	sound: ReturnType<typeof loadSound>
 	element: ReturnType<typeof loadElementSounds>
 	piece: ReturnType<typeof loadPieceSounds>
@@ -27,9 +25,9 @@ export function load(param: OfflineAudioContext): {
 }
 
 export function load(param: FreeSoundType): {
-	pieces: ReturnType<typeof loadPieces>
-	piece: ReturnType<typeof loadPiece>
 	element: ReturnType<typeof loadElement>
+	piece: ReturnType<typeof loadPiece>
+	pieces: ReturnType<typeof loadPieces>
 }
 
 /**
@@ -37,8 +35,8 @@ export function load(param: FreeSoundType): {
  * @param param - {@link FreeSound | freesound} for FreeSound API or {@link OfflineAudioContext} for loading audio files.
  * @returns Returns corresponding loaders for the passed {@link param}
  */
-export function load(param: OfflineAudioContext | FreeSoundType) {
-	if (isContext(param)) {
+export function load(param: LoadParam) {
+	if (isAnyContext(param)) {
 		return {
 			sound: loadSound(param),
 			element: loadElementSounds(param),

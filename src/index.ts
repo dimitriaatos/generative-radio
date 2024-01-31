@@ -1,13 +1,12 @@
 import 'dotenv/config'
-import { OfflineAudioContext } from 'node-web-audio-api'
-import connect from './connect.js'
+import play from './play.js'
 import load from './load/index.js'
 import schedule from './schedule.js'
 import { Pieces } from './types/Pieces.js'
 import { PiecesWith } from './types/PiecesWith.js'
 import { ScheduledPieces } from './types/Scheduled.js'
 import { LoadedSounds, ScheduledSounds, Sounds } from './types/Sounds.js'
-import { FreeSoundType } from './types/Types.js'
+import { Context, FreeSoundType, isContext } from './types/Types.js'
 
 /**
  * Creates an instance of Generative Radio
@@ -21,13 +20,20 @@ const createGenerativeRadio = async ({
 	pieces,
 	context,
 	debug = false,
+	duration,
 }: {
 	freesound: FreeSoundType
 	pieces: Pieces
-	context: OfflineAudioContext
+	context: Context
 	debug?: boolean
+	duration?: number
 }): Promise<undefined> => {
-	const availableTime = context.length / context.sampleRate
+	let availableTime: number
+	if (isContext(context)) {
+		availableTime = duration
+	} else {
+		availableTime = context.length / context.sampleRate
+	}
 
 	const log = (...msgs: unknown[]) => {
 		debug && console.log('- ', ...msgs)
@@ -55,9 +61,9 @@ const createGenerativeRadio = async ({
 		withScheduledSounds
 	)
 
-	// Create & connect audio nodes
-	log('Create & connect audio nodes')
-	connect(context).pieces(
+	// Connect and play
+	log('Connect and play')
+	play(context).pieces(
 		withLoadedSounds,
 		context.destination,
 		context.currentTime + 0.01

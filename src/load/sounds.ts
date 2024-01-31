@@ -1,9 +1,10 @@
 import { Sound } from 'freesound-client'
 import { ElementWith, PieceWith, PiecesWith } from '../types/PiecesWith.js'
 import { LoadedSounds, ScheduledSounds } from '../types/Sounds.js'
+import { Context } from '../types/Types.js'
 
 export const loadSound =
-	(context: OfflineAudioContext) =>
+	(context: Context) =>
 	async (sound: Sound): Promise<AudioBuffer> => {
 		return await fetch(sound.previews['preview-lq-mp3'])
 			.then((response) => response.arrayBuffer())
@@ -11,7 +12,7 @@ export const loadSound =
 	}
 
 export const loadElementSounds =
-	(context: OfflineAudioContext) =>
+	(context: Context) =>
 	async (
 		element: ElementWith<ScheduledSounds>
 	): Promise<ElementWith<LoadedSounds>> => {
@@ -30,7 +31,7 @@ export const loadElementSounds =
 	}
 
 export const loadPieceSounds =
-	(context: OfflineAudioContext) =>
+	(context: Context) =>
 	async (
 		piece: PieceWith<ScheduledSounds>
 	): Promise<PieceWith<LoadedSounds>> => {
@@ -41,7 +42,7 @@ export const loadPieceSounds =
 	}
 
 export const loadPiecesSounds =
-	(context: OfflineAudioContext) =>
+	(context: Context) =>
 	async (
 		pieces: PiecesWith<ScheduledSounds>
 	): Promise<PiecesWith<LoadedSounds>> => {
