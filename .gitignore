@@ -4,3 +4,4 @@ package-lock.json
 **/.DS_Store
 **/dist
 notes.md
+**/generative.wav

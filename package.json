@@ -7,7 +7,6 @@
 	"scripts": {
 		"start": "tsc && node dist/index.js",
 		"lint": "eslint -f unix \"src/**/*.{ts,tsx}\"",
-		"example": "tsc && node dist/examples/simple/index.js",
 		"docs:build": "./node_modules/.bin/typedoc",
 		"docs:dev": "./node_modules/.bin/typedoc --watch ./src/ & open ./dist/docs/index.html"
 	},
@@ -25,15 +24,11 @@
 		"@microsoft/tsdoc": "^0.14.2",
 		"@microsoft/tsdoc-config": "^0.16.2",
 		"@tsconfig/node18": "^18.2.2",
-		"cross-fetch": "^4.0.0",
+		"@types/audiobuffer-to-wav": "^1.0.4",
+		"audiobuffer-to-wav": "^1.0.0",
 		"eslint-plugin-tsdoc": "^0.2.17",
 		"freesound-client": "^0.5.0",
-		"music-metadata": "^7.14.0",
-		"node-web-audio-api": "^0.14.0",
-		"speaker": "^0.5.4",
-		"throttle": "^1.0.3",
-		"ts-deepmerge": "^6.2.0",
-		"url": "^0.11.0"
+		"node-web-audio-api": "^0.14.0"
 	},
 	"devDependencies": {
 		"@types/node": "^20.11.0",
@@ -47,7 +42,6 @@
 		"stylelint-config-standard": "^23.0.0",
 		"stylelint-order": "^5.0.0",
 		"ts-loader": "^9.2.6",
-		"typescript": "^5.3.3",
-		"webpack": "^5.64.4"
+		"typescript": "^5.3.3"
 	}
 }
