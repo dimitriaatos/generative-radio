@@ -6,6 +6,8 @@
 	"type": "module",
 	"scripts": {
 		"start": "tsc && node dist/index.js",
+		"generate": "tsc && node dist/examples/generate/index.js",
+		"play": "tsc && node dist/examples/play/index.js",
 		"lint": "eslint -f unix \"src/**/*.{ts,tsx}\"",
 		"docs:build": "./node_modules/.bin/typedoc",
 		"docs:dev": "./node_modules/.bin/typedoc --watch ./src/ & open ./dist/docs/index.html"
