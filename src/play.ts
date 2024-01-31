@@ -10,7 +10,7 @@ const playElement =
 		destination: AudioNode,
 		offset: number
 	): void => {
-		const { metro, fade = 0 } = element.structure
+		const { metro, fade: fadePercentage = 0 } = element.structure
 		element.sounds.forEach((sound) => {
 			const computedDuration = metro || sound.duration
 			sound.schedule.forEach((timestamp) => {
@@ -19,11 +19,15 @@ const playElement =
 				const gain = context.createGain()
 				gain.connect(destination)
 				source.connect(gain)
-				const { fadeIn, fadeOut } = createFade(gain)
 
 				source.start(offset + timestamp, 0, computedDuration)
+
+				const { fadeIn, fadeOut } = createFade(gain)
+				const fade = fadePercentage * sound.duration
 				fadeIn(fade, offset + timestamp)
-				fadeOut(fade, offset + timestamp + sound.duration - fade)
+				if (fadePercentage > 0) {
+					fadeOut(fade, offset + timestamp + sound.duration - fade)
+				}
 			})
 		})
 	}
@@ -31,19 +35,19 @@ const playElement =
 const playPiece =
 	(context: Context) =>
 	(
-		piece: PieceWith<LoadedSounds>,
+		{ fade, duration, elements, schedule }: PieceWith<LoadedSounds>,
 		destination: AudioNode,
 		offset: number
 	): void => {
 		const play = playElement(context)
-		piece.schedule.forEach((timestamp) => {
+		schedule.forEach((timestamp) => {
 			const gain = context.createGain()
 			gain.connect(destination)
-
+			const clippedFade = Math.min(fade, duration / 2)
 			const { fadeIn, fadeOut } = createFade(gain)
-			fadeIn(piece.fade, offset + timestamp)
-			fadeOut(piece.fade, offset + timestamp + piece.duration)
-			piece.elements.forEach((element) => {
+			fadeIn(clippedFade, offset + timestamp)
+			fadeOut(clippedFade, offset + timestamp + duration)
+			elements.forEach((element) => {
 				play(element, gain, offset)
 			})
 		})
