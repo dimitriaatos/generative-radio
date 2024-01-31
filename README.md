@@ -1,6 +1,6 @@
 # Generative radio
 
-A browser module that generates music by playing sounds hosted on [Freesound](http://freesound.org/).
+A Nodejs music generator using sounds hosted on [Freesound](http://freesound.org/).
 
 ## Demo
 
@@ -10,7 +10,7 @@ A browser module that generates music by playing sounds hosted on [Freesound](ht
 
 `npm i dimitriaatos/generative-radio`
 
-(You'll have to have [node](https://nodejs.org/) and [git](https://git-scm.com/downloads) installed)
+(Requirements: [node](https://nodejs.org/) and [git](https://git-scm.com/downloads) installed)
 
 ## Try
 
@@ -19,7 +19,7 @@ git clone https://github.com/dimitriaatos/generative-radio.git
 cd generative-radio
 npm i
 echo "TOKEN=[API token]" > .env
-npm test
+# Choose one of the examples
 ```
 
 Replace `[API token]` with a Freesound API token, you can get one on <https://freesound.org/apiv2/apply/>.
@@ -31,13 +31,18 @@ Replace `[API token]` with a Freesound API token, you can get one on <https://fr
 ```javascript
 import GenerativeRadio from 'generative-radio'
 import pieces from './pieces'
+import FreeSound from 'freesound-client'
 
-const gen = new GenerativeRadio(pieces)
+const freesound = new FreeSound.default()
+freesound.setToken('api token')
 
-gen.token = '[API token]'
+await createGenerativeRadio({
+	pieces,
+	freesound,
+	context: offlineContext,
+})
 
-// gen.play() should be called after a user gesture (e.g. a click).
-document.addEventListener('click', () => { gen.play() })
+const recording = await offlineContext.startRendering()
 ```
 
 `pieces.js`
