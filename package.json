@@ -30,6 +30,7 @@
 		"audiobuffer-to-wav": "^1.0.0",
 		"eslint-plugin-tsdoc": "^0.2.17",
 		"freesound-client": "^0.5.0",
+		"node-lame": "^1.3.2",
 		"node-web-audio-api": "^0.14.0"
 	},
 	"devDependencies": {
