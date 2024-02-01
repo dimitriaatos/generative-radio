@@ -60,6 +60,7 @@ export const createFade = (
 	fadeTo: typeof fadeTo
 	fadeIn: typeof fadeIn
 	fadeOut: typeof fadeOut
+	mute: typeof mute
 } => {
 	/**
 	 * Creates a gain fade
@@ -78,5 +79,9 @@ export const createFade = (
 	const fadeIn = (...args: FadeParams) => fadeTo(1, ...args)
 	const fadeOut = (...args: FadeParams) => fadeTo(0.001, ...args)
 
-	return { fadeTo, fadeIn, fadeOut }
+	const mute = (gain: GainNode): void => {
+		gain.gain.setValueAtTime(0, 0)
+	}
+
+	return { fadeTo, fadeIn, fadeOut, mute }
 }

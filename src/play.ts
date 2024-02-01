@@ -17,12 +17,13 @@ const playElement =
 				const source = context.createBufferSource()
 				source.buffer = sound.buffer
 				const gain = context.createGain()
+				const { fadeIn, fadeOut, mute } = createFade(gain)
+				mute(gain)
 				gain.connect(destination)
 				source.connect(gain)
 
 				source.start(offset + timestamp, 0, computedDuration)
 
-				const { fadeIn, fadeOut } = createFade(gain)
 				const fade = fadePercentage * sound.duration
 				fadeIn(fade, offset + timestamp)
 				if (fadePercentage > 0) {
@@ -44,7 +45,8 @@ const playPiece =
 			const gain = context.createGain()
 			gain.connect(destination)
 			const clippedFade = Math.min(fade, duration / 2)
-			const { fadeIn, fadeOut } = createFade(gain)
+			const { fadeIn, fadeOut, mute } = createFade(gain)
+			mute(gain)
 			fadeIn(clippedFade, offset + timestamp)
 			fadeOut(clippedFade, offset + timestamp + duration)
 			elements.forEach((element) => {
