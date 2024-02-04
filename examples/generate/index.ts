@@ -1,5 +1,4 @@
 import toWav from 'audiobuffer-to-wav'
-import 'dotenv/config'
 import { default as FreeSound } from 'freesound-client'
 import { OfflineAudioContext } from 'node-web-audio-api'
 import { Buffer } from 'node:buffer'
@@ -13,7 +12,10 @@ const start = Date.now()
 const sampleRate = 44100
 const channels = 2
 
-const durationInSeconds = 60
+const durationInMinutes = parseInt(process.argv?.[2])
+const durationInSeconds = (durationInMinutes || 1) * 60
+
+console.log(`Generate for ${durationInSeconds} seconds.`)
 
 const offlineContext = new OfflineAudioContext(
 	channels,
