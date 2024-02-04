@@ -8,6 +8,8 @@ import { Pieces } from '../../src/types/Pieces.js'
 import pieces from '../pieces.json' assert { type: 'json' }
 import { Lame } from 'node-lame'
 
+const start = Date.now()
+
 const sampleRate = 44100
 const channels = 2
 
@@ -49,3 +51,6 @@ encoder
 	.catch((error) => {
 		console.error(error)
 	})
+
+const end = Date.now()
+console.log(`Execution time: ${(end - start) / 1000} s`)
