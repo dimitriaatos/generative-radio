@@ -3,40 +3,686 @@
 		"elements": [
 			{
 				"search": {
-					"text": "noise",
+					"text": "wind chimes",
+					"options": {
+						"results": 50,
+						"filter": {
+							"tag": "chimes",
+							"duration": [0, 40]
+						},
+						"sort": "score"
+					}
+				},
+				"structure": {
+					"metro": 30,
+					"fade": 0.2
+				}
+			},
+			{
+				"search": {
+					"text": "chimes",
+					"options": {
+						"results": 35,
+						"filter": {
+							"tag": "field-recording",
+							"duration": [0, 50]
+						},
+						"sort": "score"
+					}
+				},
+				"structure": {
+					"mono": true,
+					"fade": 0.3
+				}
+			},
+			{
+				"search": {
+					"text": "wind harp",
+					"options": {
+						"results": 50,
+						"filter": {
+							"tag": "field-recording",
+							"duration": [0, 160, "*"]
+						},
+						"sort": "score"
+					}
+				},
+				"structure": {
+					"mono": true,
+					"fade": 0.3
+				}
+			}
+		],
+		"duration": 300,
+		"fade": 1
+	},
+	{
+		"elements": [
+			{
+				"search": {
+					"text": "Bee recorded individually",
+					"options": {
+						"results": 200,
+						"filter": {
+							"duration": [1, 60]
+						},
+						"sort": "score"
+					}
+				},
+				"structure": {
+					"metro": 3,
+					"fade": 0.3
+				}
+			}
+		],
+		"duration": 70,
+		"fade": 5
+	},
+	{
+		"elements": [
+			{
+				"search": {
+					"text": "birds",
 					"options": {
 						"results": 150,
 						"filter": {
-							"duration": [1, 20]
+							"duration": [20, 60]
+						},
+						"sort": "rating_desc"
+					}
+				},
+				"structure": {
+					"metro": 30,
+					"fade": 0.001
+				}
+			},
+			{
+				"search": {
+					"text": "birds forest",
+					"options": {
+						"results": 150,
+						"filter": {
+							"duration": [20, 40]
+						},
+						"sort": "rating_desc"
+					}
+				},
+				"structure": {
+					"metro": 35,
+					"fade": 0.001
+				}
+			}
+		],
+		"duration": 300,
+		"fade": 10
+	},
+	{
+		"elements": [
+			{
+				"search": {
+					"text": "clock chime",
+					"options": {
+						"results": 150,
+						"filter": {
+							"tag": "clock",
+							"duration": [1, 25]
 						},
 						"sort": "rating_desc"
 					}
 				},
 				"structure": {
 					"fade": 0.2,
-					"mono": true,
-					"metro": 2
+					"metro": 3
 				}
 			},
 			{
 				"search": {
-					"text": "keyboard",
+					"text": "clock chime",
 					"options": {
 						"results": 150,
 						"filter": {
-							"duration": [1, 20]
+							"tag": "tick-tock",
+							"duration": [1, 25]
+						},
+						"sort": "score"
+					}
+				},
+				"structure": {
+					"fade": 0.3,
+					"metro": 5
+				}
+			}
+		],
+		"duration": 120,
+		"fade": 5
+	},
+	{
+		"elements": [
+			{
+				"search": {
+					"text": "desert blume",
+					"options": {
+						"results": 250,
+						"filter": {
+							"duration": [1, 45]
 						},
 						"sort": "rating_desc"
 					}
 				},
 				"structure": {
-					"fade": 0.0,
+					"fade": 0.3,
+					"mono": true
+				}
+			},
+			{
+				"search": {
+					"text": "desert",
+					"options": {
+						"results": 150,
+						"filter": {
+							"tag": "field-recording",
+							"duration": [10, 35]
+						},
+						"sort": "rating_desc"
+					}
+				},
+				"structure": {
+					"fade": 0.3,
+					"metro": 10
+				}
+			}
+		],
+		"duration": 350,
+		"fade": 8
+	},
+	{
+		"elements": [
+			{
+				"search": {
+					"text": "Rattle Sound Collection",
+					"options": {
+						"results": 100,
+						"filter": {
+							"tag": "grains",
+							"duration": [1, 25]
+						},
+						"sort": "score"
+					}
+				},
+				"structure": {
+					"fade": 0.3,
+					"mono": true
+				}
+			},
+			{
+				"search": {
+					"text": "\"Electric Birds\"",
+					"options": {
+						"results": 100,
+						"filter": {
+							"tag": "birds",
+							"duration": [1, 25]
+						},
+						"sort": "score"
+					}
+				},
+				"structure": {
+					"fade": 0.25,
 					"mono": true
 				}
 			}
 		],
-		"duration": 10,
+		"duration": 50,
 		"fade": 10
+	},
+	{
+		"elements": [
+			{
+				"search": {
+					"text": "\"fireplace\"",
+					"options": {
+						"results": 150,
+						"filter": {
+							"tag": "fireplace",
+							"duration": [10, 150]
+						},
+						"sort": "score"
+					}
+				},
+				"structure": {
+					"metro": 4,
+					"fade": 0.4
+				}
+			}
+		],
+		"duration": 100,
+		"fade": 5
+	},
+	{
+		"elements": [
+			{
+				"search": {
+					"text": "foghorn",
+					"options": {
+						"results": 150,
+						"filter": {
+							"tag": "ship",
+							"duration": [1, 200]
+						},
+						"sort": "rating_asc"
+					}
+				},
+				"structure": {
+					"mono": true,
+					"fade": 0.2
+				}
+			},
+			{
+				"search": {
+					"text": "foghorn",
+					"options": {
+						"results": 150,
+						"filter": {
+							"tag": "ferry",
+							"duration": [1, 200]
+						},
+						"sort": "rating_asc"
+					}
+				},
+				"structure": {
+					"mono": true,
+					"fade": 0.2
+				}
+			},
+			{
+				"search": {
+					"text": "horn",
+					"options": {
+						"results": 150,
+						"filter": {
+							"tag": "harbor",
+							"duration": [1, 200]
+						},
+						"sort": "rating_asc"
+					}
+				},
+				"structure": {
+					"metro": 16,
+					"fade": 0.2
+				}
+			}
+		],
+		"duration": 200,
+		"fade": 13
+	},
+	{
+		"elements": [
+			{
+				"search": {
+					"text": "foley",
+					"options": {
+						"results": 150,
+						"filter": {
+							"tag": "close",
+							"duration": [1, 5, "*"]
+						},
+						"sort": "score"
+					}
+				},
+				"structure": {
+					"fade": 0.01,
+					"metro": 2
+				}
+			},
+			{
+				"search": {
+					"text": "surface",
+					"options": {
+						"results": 150,
+						"filter": {
+							"duration": [1, 15, "*"]
+						},
+						"sort": "score"
+					}
+				},
+				"structure": {
+					"fade": 0.5
+				}
+			}
+		],
+		"duration": 60,
+		"fade": 3
+	},
+	{
+		"elements": [
+			{
+				"search": {
+					"text": "",
+					"options": {
+						"results": 150,
+						"filter": {
+							"tag": "field-recording voices",
+							"duration": ["*", 10, 1200]
+						},
+						"sort": "score"
+					}
+				},
+				"structure": {
+					"mono": true,
+					"fade": 0.3
+				}
+			}
+		],
+		"duration": 200,
+		"fade": 5
+	},
+	{
+		"elements": [
+			{
+				"search": {
+					"text": "hydrophone",
+					"options": {
+						"results": 150,
+						"filter": {
+							"tag": "hydrophone",
+							"duration": [1, 25]
+						},
+						"sort": "score"
+					}
+				},
+				"structure": {
+					"fade": 0.3,
+					"metro": 5
+				}
+			},
+			{
+				"search": {
+					"text": "pebbles",
+					"options": {
+						"results": 150,
+						"filter": {
+							"tag": "pebbles",
+							"duration": [1, 25]
+						},
+						"sort": "score"
+					}
+				},
+				"structure": {
+					"fade": 0.3,
+					"metro": 9
+				}
+			}
+		],
+		"duration": 60,
+		"fade": 5
+	},
+	{
+		"elements": [
+			{
+				"search": {
+					"text": "JarredGibb ice",
+					"options": {
+						"results": 100,
+						"filter": {
+							"duration": [1, 25]
+						},
+						"sort": "score"
+					}
+				},
+				"structure": {
+					"metro": 5,
+					"fade": 0.3
+				}
+			},
+			{
+				"search": {
+					"text": "Snowflake",
+					"options": {
+						"results": 100,
+						"filter": {
+							"duration": [1, 60],
+							"tag": "field-recording"
+						},
+						"sort": "score"
+					}
+				},
+				"structure": {
+					"mono": true,
+					"fade": 0.3
+				}
+			}
+		],
+		"duration": 50,
+		"fade": 10
+	},
+	{
+		"elements": [
+			{
+				"search": {
+					"text": "die Ferdinger",
+					"options": {
+						"results": 100,
+						"filter": {
+							"duration": [3, 25]
+						},
+						"sort": "score"
+					}
+				},
+				"structure": {
+					"metro": 20,
+					"fade": 0.01
+				}
+			},
+			{
+				"search": {
+					"text": "industrial phoenixdk",
+					"options": {
+						"results": 100,
+						"filter": {
+							"duration": [1, 25]
+						},
+						"sort": "score"
+					}
+				},
+				"structure": {
+					"metro": 2,
+					"fade": 0.01
+				}
+			}
+		],
+		"duration": 35,
+		"fade": 1
+	},
+	{
+		"elements": [
+			{
+				"search": {
+					"text": "vlf",
+					"options": {
+						"results": 150,
+						"filter": {
+							"duration": [1, 25, "*"]
+						},
+						"sort": "rating_desc"
+					}
+				},
+				"structure": {
+					"fade": 0.2,
+					"mono": true
+				}
+			},
+			{
+				"search": {
+					"text": "vlf",
+					"options": {
+						"results": 150,
+						"filter": {
+							"tag": "natural-radio",
+							"duration": [1, 25, "*"]
+						},
+						"sort": "rating_desc"
+					}
+				},
+				"structure": {
+					"fade": 0.25,
+					"mono": true
+				}
+			},
+			{
+				"search": {
+					"text": "VLF-Inspire galeku",
+					"options": {
+						"results": 150,
+						"filter": {
+							"duration": [1, 25, "*"]
+						},
+						"sort": "score"
+					}
+				},
+				"structure": {
+					"fade": 0.4,
+					"metro": 4
+				}
+			}
+		],
+		"duration": 90,
+		"fade": 3
+	},
+	{
+		"elements": [
+			{
+				"search": {
+					"text": "city night",
+					"options": {
+						"results": 150,
+						"filter": {
+							"duration": [15, 60],
+							"tag": "field-recording"
+						},
+						"sort": "score"
+					}
+				},
+				"structure": {
+					"metro": 38,
+					"fade": 0.125
+				}
+			},
+			{
+				"search": {
+					"text": "night field recording",
+					"options": {
+						"results": 150,
+						"filter": {
+							"duration": ["15", "90"],
+							"tag": "field-recording"
+						},
+						"sort": "score"
+					}
+				},
+				"structure": {
+					"metro": 45,
+					"fade": 0.125
+				}
+			}
+		],
+		"duration": 300,
+		"fade": 8
+	},
+	{
+		"elements": [
+			{
+				"search": {
+					"text": "procession",
+					"options": {
+						"results": 150,
+						"filter": {
+							"tag": "field-recording",
+							"duration": [10, 200]
+						},
+						"sort": "score"
+					}
+				},
+				"structure": {
+					"mono": true,
+					"fade": 0.1
+				}
+			}
+		],
+		"duration": 320,
+		"fade": 1
+	},
+	{
+		"elements": [
+			{
+				"search": {
+					"text": "river",
+					"options": {
+						"results": 150,
+						"filter": {
+							"tag": "stream",
+							"duration": [1, 30]
+						},
+						"sort": "rating_asc"
+					}
+				},
+				"structure": {
+					"mono": true,
+					"fade": 0.5
+				}
+			},
+			{
+				"search": {
+					"text": "stream",
+					"options": {
+						"results": 150,
+						"filter": {
+							"tag": "trickle",
+							"duration": [1, 40]
+						},
+						"sort": "rating_asc"
+					}
+				},
+				"structure": {
+					"mono": true,
+					"fade": 0.5
+				}
+			},
+			{
+				"search": {
+					"text": "water resonance",
+					"options": {
+						"results": 150,
+						"filter": {
+							"tag": "field-recording",
+							"duration": [0.5, 40, 200]
+						},
+						"sort": "score"
+					}
+				},
+				"structure": {
+					"metro": 10,
+					"fade": 0.1
+				}
+			},
+			{
+				"search": {
+					"sound": "279340",
+					"options": {
+						"results": 150,
+						"filter": {
+							"duration": [0.5, 30, 200]
+						},
+						"sort": "score"
+					}
+				},
+				"structure": {
+					"metro": 7,
+					"fade": 0.1
+				}
+			}
+		],
+		"duration": 250,
+		"fade": 9
 	},
 	{
 		"elements": [
@@ -46,18 +692,327 @@
 					"options": {
 						"results": 150,
 						"filter": {
-							"duration": [1, 20]
+							"duration": [10, 20]
+						},
+						"sort": "rating_desc"
+					}
+				},
+				"structure": {
+					"metro": 2,
+					"fade": 0.4
+				}
+			},
+			{
+				"search": {
+					"text": "small birds",
+					"options": {
+						"results": 150,
+						"filter": {
+							"tag": "field-recording",
+							"duration": [10, 360]
 						},
 						"sort": "rating_desc"
 					}
 				},
 				"structure": {
 					"mono": true,
-					"fade": 0.4
+					"fade": 0.5
 				}
 			}
 		],
-		"duration": 10,
+		"duration": 320,
+		"fade": 15
+	},
+	{
+		"elements": [
+			{
+				"search": {
+					"text": "soundwalk",
+					"options": {
+						"results": 150,
+						"filter": {
+							"duration": [20, 40]
+						},
+						"sort": "score"
+					}
+				},
+				"structure": {
+					"fade": 0.2,
+					"metro": 30
+				}
+			}
+		],
+		"duration": 180,
+		"fade": 15
+	},
+	{
+		"elements": [
+			{
+				"search": {
+					"text": "narrated soundwalk",
+					"options": {
+						"results": 150,
+						"filter": {
+							"duration": ["0", "*", "*"]
+						},
+						"sort": "score"
+					}
+				},
+				"structure": {
+					"fade": 0.15,
+					"metro": 30
+				}
+			}
+		],
+		"duration": 200,
+		"fade": 10
+	},
+	{
+		"elements": [
+			{
+				"search": {
+					"text": "ventilation",
+					"options": {
+						"results": 150,
+						"filter": {
+							"tag": "ventilation",
+							"duration": [5, 25, "*"]
+						},
+						"sort": "score"
+					}
+				},
+				"structure": {
+					"mono": true,
+					"metro": 3,
+					"fade": 0.001
+				}
+			},
+			{
+				"search": {
+					"text": "fridge",
+					"options": {
+						"results": 100,
+						"filter": {
+							"duration": [1, 25]
+						},
+						"sort": "score"
+					}
+				},
+				"structure": {
+					"mono": true,
+					"fade": 0.001
+				}
+			},
+			{
+				"search": {
+					"text": "fan",
+					"options": {
+						"results": 200,
+						"filter": {
+							"tag": "field-recording",
+							"duration": [5, 55, "*"]
+						},
+						"sort": "score"
+					}
+				},
+				"structure": {
+					"mono": true,
+					"metro": 2,
+					"fade": 0.001
+				}
+			}
+		],
+		"duration": 30,
+		"fade": 1
+	},
+	{
+		"elements": [
+			{
+				"search": {
+					"text": "waterfall field recording",
+					"options": {
+						"results": 50,
+						"filter": {
+							"duration": [0, 120]
+						},
+						"sort": "rating_desc"
+					}
+				},
+				"structure": {
+					"metro": 35,
+					"fade": 0.3
+				}
+			},
+			{
+				"search": {
+					"text": "animals",
+					"options": {
+						"results": 50,
+						"filter": {
+							"duration": ["*", 120]
+						},
+						"sort": "score"
+					}
+				},
+				"structure": {
+					"metro": 20,
+					"fade": 0.3
+				}
+			},
+			{
+				"search": {
+					"text": "chatter",
+					"options": {
+						"results": 150,
+						"filter": {
+							"duration": ["*", 130]
+						},
+						"sort": "score"
+					}
+				},
+				"structure": {
+					"metro": 40,
+					"fade": 0.3
+				}
+			},
+			{
+				"search": {
+					"text": "traffic",
+					"options": {
+						"results": 50,
+						"filter": {
+							"duration": [0, 20],
+							"is_geotagged": true
+						},
+						"sort": "rating_desc"
+					}
+				},
+				"structure": {
+					"metro": 25,
+					"fade": 0.3
+				}
+			}
+		],
+		"duration": 290,
+		"fade": 15
+	},
+	{
+		"elements": [
+			{
+				"search": {
+					"text": "water drip",
+					"options": {
+						"results": 150,
+						"filter": {
+							"tag": "drip",
+							"duration": [0, 10]
+						},
+						"sort": "score"
+					}
+				},
+				"structure": {
+					"mono": true,
+					"fade": 0.001
+				}
+			},
+			{
+				"search": {
+					"text": "trickle",
+					"options": {
+						"results": 150,
+						"filter": {
+							"tag": "drip",
+							"duration": [0, 8]
+						},
+						"sort": "score"
+					}
+				},
+				"structure": {
+					"mono": true,
+					"fade": 0.001
+				}
+			},
+			{
+				"search": {
+					"text": "drip",
+					"options": {
+						"results": 150,
+						"filter": {
+							"tag": "liquid",
+							"duration": [0, 9]
+						},
+						"sort": "score"
+					}
+				},
+				"structure": {
+					"mono": true,
+					"fade": 0.001
+				}
+			}
+		],
+		"duration": 140,
+		"fade": 3
+	},
+	{
+		"elements": [
+			{
+				"search": {
+					"text": "waterfall",
+					"options": {
+						"results": 150,
+						"filter": {
+							"tag": "field-recording",
+							"duration": ["*", 90, 600]
+						},
+						"sort": "score"
+					}
+				},
+				"structure": {
+					"mono": true,
+					"fade": 0.5
+				}
+			},
+			{
+				"search": {
+					"sound": 130198,
+					"options": {
+						"results": 150,
+						"filter": {
+							"duration": [1, 1200]
+						},
+						"sort": "score"
+					}
+				},
+				"structure": {
+					"mono": true,
+					"fade": 0.2
+				}
+			}
+		],
+		"duration": 260,
+		"fade": 15
+	},
+	{
+		"elements": [
+			{
+				"search": {
+					"text": "wind chimes",
+					"options": {
+						"results": 80,
+						"filter": {
+							"tag": "field-recording%20chimes%20wind-chimes",
+							"duration": [5, 120]
+						},
+						"sort": "score"
+					}
+				},
+				"structure": {
+					"metro": 4,
+					"fade": 0.3
+				}
+			}
+		],
+		"duration": 100,
 		"fade": 10
 	}
 ]
