@@ -49,11 +49,10 @@ const encoder = new Lame({
 encoder
 	.encode()
 	.then(() => {
-		console.log('Encoding finished')
+		console.log('- Encoding finished')
+		const end = Date.now()
+		console.log(`Execution time: ${(end - start) / 1000} s`)
 	})
 	.catch((error) => {
 		console.error(error)
 	})
-
-const end = Date.now()
-console.log(`Execution time: ${(end - start) / 1000} s`)
