@@ -1,3 +1,4 @@
+import 'dotenv/config'
 import toWav from 'audiobuffer-to-wav'
 import { default as FreeSound } from 'freesound-client'
 import { OfflineAudioContext } from 'node-web-audio-api'
