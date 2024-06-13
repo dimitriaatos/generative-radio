@@ -36,7 +36,7 @@ const createGenerativeRadio = async ({
 	}
 
 	const log = (...msgs: unknown[]) => {
-		debug && console.log('- ', ...msgs)
+		debug && console.log('-', ...msgs)
 	}
 
 	// Schedule pieces (pieces only, no elements)

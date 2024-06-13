@@ -46,13 +46,11 @@ const encoder = new Lame({
 	bitrate: 128,
 }).setBuffer(buffer)
 
-encoder
-	.encode()
-	.then(() => {
-		console.log('- Encoding finished')
-		const end = Date.now()
-		console.log(`Execution time: ${(end - start) / 1000} s`)
-	})
-	.catch((error) => {
-		console.error(error)
-	})
+try {
+	await encoder.encode()
+	console.log('- Encoding finished')
+} catch (error) {
+	console.error(error)
+}
+const end = Date.now()
+console.log(`Execution time: ${(end - start) / 1000} s`)
