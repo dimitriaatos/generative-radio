@@ -1,5 +1,7 @@
 # Generative radio
 
+Checkout the [feat/offline](https://github.com/dimitriaatos/generative-radio/tree/feat/offline) branch for a newer node based, functional implementation.
+
 A browser module that generates music by playing sounds hosted on [Freesound](http://freesound.org/).
 
 ## Demo
